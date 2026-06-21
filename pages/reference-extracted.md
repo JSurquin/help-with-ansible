@@ -1,6 +1,6 @@
 ---
 layout: intro
-routeAlias: reference-intro
+routeAlias: 'reference-intro'
 ---
 
 # Ansible Reference Material
@@ -2622,9 +2622,6 @@ ansible-project/
 
 ---
 layout: new-section
-
----
-
 routeAlias: 'cheatsheet-tasks'
 ---
 
@@ -5993,14 +5990,10 @@ layout: new-section
 **💡 Tip**: run `ansible-doc <module>` for full option lists and examples.
 
 ---
-layout: new-section
 
----
-
----
 # Capstone project: overview 🎯
 
-### End-to-end orchestration
+### End-to-end orchestration (Rocky Linux reference)
 
 Deploy a **complete stack** on **Ubuntu + Rocky Linux** hosts:
 
@@ -6010,15 +6003,10 @@ users & sudo → LVM storage → OpenLDAP → snmpd
 
 **Skills combined**: inventories, roles, handlers, templates, tags, idempotence.
 
-**Analogy**: like a full house renovation checklist — plumbing, locks, and alarms in one coordinated plan.
-
 ---
 
----
 # Capstone: multi-OS inventory — OS-specific tasks 🎯
 
 ### Ubuntu vs Rocky Linux
 
 Use `ansible_os_family` or group vars to pick `apt` vs `dnf` inside roles.
-
-**Analogy**: same renovation plan, different toolboxes for brick walls vs drywall.

@@ -30,10 +30,10 @@ routeAlias: 'sommaire'
 
 <div class="flex flex-col gap-2 text-sm">
 <Link to="cheatsheet">📝 Cheatsheet — quick reference</Link>
+<Link to="cheatsheet-tasks">🚀 Cheat sheet — all playbook tasks</Link>
 <Link to="cheatsheet-changed">📝 Cheatsheet — Ansible `changed`</Link>
 <Link to="cheatsheet-command-shell-raw">📝 Cheatsheet — command, shell and raw</Link>
 <Link to="cheatsheet-yaml-anchors">📝 Cheatsheet — YAML anchors (&amp; / *)</Link>
-<Link to="cheatsheet-tasks">🚀 Cheat sheet — all playbook tasks</Link>
 <Link to="reference-intro">☁️ Cloud inventories &amp; advanced handlers</Link>
 </div>
 
@@ -46,7 +46,11 @@ routeAlias: 'sommaire'
 - **Edge cases** → `changed`, `command`/`shell`/`raw`, YAML anchors
 - **Cloud &amp; handlers** → extended reference section
 
-<a target="_blank" href="https://ansible.andromed.fr">← Back to Ansible training</a>
+<a target="_blank" href="https://ansible-english.andromed.fr">← Back to Ansible training</a>
+
+---
+src: './pages/reference-extracted.md'
+---
 
 ---
 routeAlias: 'cheatsheet'
@@ -175,10 +179,6 @@ db_password: !vault |
 # Happy automating! 🚀
 
 Reference material maintained alongside the Andromed Ansible training.
-
----
-src: './pages/reference-extracted.md'
----
 
 ---
 src: './pages/cheatsheet-changed-ansible.md'
