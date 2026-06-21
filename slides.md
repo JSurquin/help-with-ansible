@@ -41,16 +41,14 @@ routeAlias: 'sommaire'
 
 ### How to use this site
 
-- **Quick lookup** → start with the short cheatsheet
-- **Module patterns** → use the full task cheatsheet
-- **Edge cases** → `changed`, `command`/`shell`/`raw`, YAML anchors
-- **Cloud &amp; handlers** → extended reference section
+Follow the table of contents top to bottom — slide order matches the links.
+
+1. **Quick lookup** → short cheatsheet
+2. **Module patterns** → full task cheatsheet
+3. **Edge cases** → `changed`, `command`/`shell`/`raw`, YAML anchors
+4. **Cloud &amp; handlers** → extended reference section
 
 <a target="_blank" href="https://ansible-english.andromed.fr">← Back to Ansible training</a>
-
----
-src: './pages/reference-extracted.md'
----
 
 ---
 routeAlias: 'cheatsheet'
@@ -181,6 +179,10 @@ db_password: !vault |
 Reference material maintained alongside the Andromed Ansible training.
 
 ---
+src: './pages/reference-cheatsheet-tasks.md'
+---
+
+---
 src: './pages/cheatsheet-changed-ansible.md'
 ---
 
@@ -190,4 +192,8 @@ src: './pages/cheatsheet-command-shell-raw.md'
 
 ---
 src: './pages/cheatsheet-yaml-anchors-ansible.md'
+---
+
+---
+src: './pages/reference-cloud-handlers.md'
 ---
