@@ -1,12 +1,11 @@
 ---
-layout: intro
+layout: new-section
 routeAlias: 'reference-intro'
 ---
 
-# Ansible Reference Material
+# Cloud inventories & advanced handlers ☁️
 
-Extended reference content extracted from the Ansible training curriculum.
-
+Reference supplement for the Ansible training: dynamic cloud inventories (Azure, GCP, AWS), hybrid setups, auto-scaling, and in-depth handler patterns.
 
 ---
 
@@ -71,8 +70,6 @@ hostnames:
 compose:
   ansible_host: networkInterfaces[0].accessConfigs[0].natIP
 ```
-
----
 
 ---
 
