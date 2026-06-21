@@ -1,0 +1,9 @@
+---
+# Nginx role-specific variables
+nginx_package: nginx
+nginx_service: nginx
+nginx_document_root: /var/www/html
+nginx_config_path: /etc/nginx/sites-available/default
+nginx_server_name: nginx.local
+nginx_port: 8080
+admin_email: admin@example.com

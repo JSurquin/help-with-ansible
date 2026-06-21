@@ -1,0 +1,42 @@
+# Image Docker pré-configurée pour le lab Ansible
+# Cette image a Python3, SSH et sudo déjà installés
+# Démarrage instantané (pas besoin d'attendre l'installation)
+
+FROM ubuntu:22.04
+
+LABEL maintainer="jimmylansrq"
+LABEL description="Ubuntu 22.04 avec SSH/Python3 pour lab Ansible"
+LABEL version="1.0"
+
+# Éviter les prompts interactifs
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Installer tout ce dont on a besoin
+RUN apt-get update && \
+    apt-get install -y \
+    # SSH
+    openssh-server \
+    # Python pour Ansible
+    python3 \
+    python3-apt \
+    # Utilitaires
+    sudo \
+    curl \
+    wget \
+    vim \
+    # Nettoyage
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    # Créer le répertoire SSH
+    && mkdir -p /var/run/sshd
+
+# Configuration SSH pour le lab
+RUN echo 'root:ansible' | chpasswd && \
+    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+
+# Exposer le port SSH
+EXPOSE 22
+
+# Démarrer sshd
+CMD ["/usr/sbin/sshd", "-D"]

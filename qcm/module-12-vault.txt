@@ -1,0 +1,51 @@
+═══════════════════════════════════════════════════════════════
+    MINI-QUIZ: Module 12 - Ansible Vault
+═══════════════════════════════════════════════════════════════
+
+Question 1: What is Ansible Vault used for?
+
+A) Storing playbooks securely
+B) Encrypting sensitive data such as passwords
+C) Automatic backups
+
+───────────────────────────────────────────────────────────────
+
+Question 2: How do you create an encrypted file?
+
+A) `ansible-vault encrypt file.yml`
+B) `ansible-vault create file.yml`
+C) Both are possible
+
+───────────────────────────────────────────────────────────────
+
+Question 3: Why prefix variables with `vault_`?
+
+A) It is technically mandatory
+B) Good practice to identify secrets
+C) Ansible requires it
+
+═══════════════════════════════════════════════════════════════
+                        ANSWERS
+═══════════════════════════════════════════════════════════════
+
+Question 1: B ✓
+Explanation: Ansible Vault encrypts sensitive data (passwords,
+API keys, certificates, tokens...) using AES256. The file can
+stay in Git because it is encrypted. Only those with the vault
+password can decrypt it.
+
+Question 2: C ✓
+Explanation: Two possible commands:
+- `ansible-vault create file.yml`: create a new empty file and
+  encrypt it immediately
+- `ansible-vault encrypt file.yml`: encrypt an existing file
+Both are valid depending on your need.
+
+Question 3: B ✓
+Explanation: The `vault_` prefix is NOT technically mandatory;
+it is a convention/best practice. Benefits:
+- Quick identification of secrets in code
+- Avoids committing secrets in plain text by mistake
+- Makes code more readable for the team
+
+═══════════════════════════════════════════════════════════════

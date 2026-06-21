@@ -1,0 +1,111 @@
+#!/usr/bin/env python3
+"""
+Simple demonstration application
+Version: {{ app_version }}
+Environment: {{ app_environment }}
+"""
+
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import json
+import socket
+from datetime import datetime
+
+class AppHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == '/health':
+            # Health check endpoint
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            response = {
+                'status': 'OK',
+                'timestamp': datetime.now().isoformat()
+            }
+            self.wfile.write(json.dumps(response).encode())
+        
+        elif self.path == '/':
+            # Home page
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+            html = """
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>{{ app_name }}</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        max-width: 800px;
+                        margin: 50px auto;
+                        padding: 20px;
+                        background-color: #f0f0f0;
+                    }
+                    .container {
+                        background: white;
+                        padding: 30px;
+                        border-radius: 10px;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                    }
+                    h1 {
+                        color: #333;
+                        border-bottom: 3px solid #4CAF50;
+                        padding-bottom: 10px;
+                    }
+                    .info {
+                        background: #f9f9f9;
+                        padding: 15px;
+                        border-left: 4px solid #4CAF50;
+                        margin: 20px 0;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1>🚀 {{ app_name }}</h1>
+                    <div class="info">
+                        <p><strong>Version:</strong> {{ app_version }}</p>
+                        <p><strong>Environment:</strong> {{ app_environment }}</p>
+                        <p><strong>Server:</strong> """ + socket.gethostname() + """</p>
+                        <p><strong>Port:</strong> {{ app_port }}</p>
+                        <p><strong>Timestamp:</strong> """ + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + """</p>
+                    </div>
+                    <p>✅ Application deployed with Ansible</p>
+                </div>
+            </body>
+            </html>
+            """
+            self.wfile.write(html.encode())
+        
+        elif self.path == '/info':
+            # Information endpoint
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            info = {
+                'app_name': '{{ app_name }}',
+                'version': '{{ app_version }}',
+                'environment': '{{ app_environment }}',
+                'hostname': socket.gethostname(),
+                'port': {{ app_port }},
+                'timestamp': datetime.now().isoformat()
+            }
+            self.wfile.write(json.dumps(info, indent=2).encode())
+        
+        else:
+            # 404
+            self.send_response(404)
+            self.send_header('Content-type', 'text/plain')
+            self.end_headers()
+            self.wfile.write(b'404 Not Found')
+    
+    def log_message(self, format, *args):
+        # Log requests
+        print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {format % args}")
+
+if __name__ == '__main__':
+    server_address = ('', {{ app_port }})
+    httpd = HTTPServer(server_address, AppHandler)
+    print('🚀 {{ app_name }} v{{ app_version }} started on port {{ app_port }}')
+    print('🌍 Environment: {{ app_environment }}')
+    httpd.serve_forever()

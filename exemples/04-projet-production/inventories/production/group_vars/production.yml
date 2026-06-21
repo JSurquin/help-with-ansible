@@ -1,0 +1,42 @@
+--- # Start of YAML document
+# PRODUCTION variables
+
+app_environment: "production" # Environment name: production
+
+# Application
+app_version: "v1.2.0"  # Fixed version in prod # Specific version for stability
+app_replicas: 3 # Number of replicas: 3 for high availability
+app_debug: false # Debug mode disabled in production (security)
+
+# Resources
+max_memory: "2g" # Memory limit: 2 GB (substantial resources)
+max_cpu: "2" # CPU limit: 2 cores
+
+# Database
+db_host: "db-prod.internal" # Production database host
+db_name: "myapp_production" # Production database name
+db_user: "prod_user" # Production database user
+# db_password: see secrets.yml (Vault) # Password stored in Vault (secure)
+
+# URLs
+app_url: "https://monapp.com" # Public production application URL
+api_url: "https://api.monapp.com" # Production API URL
+
+# SSL
+ssl_enabled: true # SSL enabled in production (required for HTTPS)
+ssl_cert_path: "/etc/ssl/certs/monapp.crt" # SSL certificate path
+ssl_key_path: "/etc/ssl/private/monapp.key" # Private key path
+
+# Monitoring
+monitoring_interval: 30  # More frequent in prod # 30-second interval (strict monitoring)
+
+# Backup
+backup_schedule: "0 1,13 * * *"  # 1 AM and 1 PM (twice daily) # Cron: backups at 1 AM and 1 PM
+
+# Performance
+nginx_cache_enabled: true # Nginx cache enabled for performance
+nginx_cache_max_size: "1g" # Maximum cache size: 1 GB
+
+# Security
+firewall_enabled: true # Firewall enabled to secure the server
+fail2ban_enabled: true # Fail2ban enabled for brute-force protection

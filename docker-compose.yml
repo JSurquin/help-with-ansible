@@ -1,0 +1,173 @@
+# Docker Compose Lab - Ansible test infrastructure
+# This file creates 10 Ubuntu containers that simulate servers
+# Ansible can manage them like real hosts
+
+services:
+  # Web servers (3 instances)
+  web-server-1:
+    image: ubuntu:22.04
+    hostname: web01
+    container_name: ansible-lab-web01
+    command: |
+      bash -c "apt-get update && 
+               apt-get install -y openssh-server python3 sudo &&
+               mkdir -p /var/run/sshd &&
+               echo 'root:ansible' | chpasswd &&
+               sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+               /usr/sbin/sshd -D"
+    networks:
+      - ansible-lab
+    expose:
+      - "22"
+
+  web-server-2:
+    image: ubuntu:22.04
+    hostname: web02
+    container_name: ansible-lab-web02
+    command: |
+      bash -c "apt-get update && 
+               apt-get install -y openssh-server python3 sudo &&
+               mkdir -p /var/run/sshd &&
+               echo 'root:ansible' | chpasswd &&
+               sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+               /usr/sbin/sshd -D"
+    networks:
+      - ansible-lab
+    expose:
+      - "22"
+
+  web-server-3:
+    image: ubuntu:22.04
+    hostname: web03
+    container_name: ansible-lab-web03
+    command: |
+      bash -c "apt-get update && 
+               apt-get install -y openssh-server python3 sudo &&
+               mkdir -p /var/run/sshd &&
+               echo 'root:ansible' | chpasswd &&
+               sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+               /usr/sbin/sshd -D"
+    networks:
+      - ansible-lab
+    expose:
+      - "22"
+
+  # Database servers (2 instances)
+  db-server-1:
+    image: ubuntu:22.04
+    hostname: db01
+    container_name: ansible-lab-db01
+    command: |
+      bash -c "apt-get update && 
+               apt-get install -y openssh-server python3 sudo &&
+               mkdir -p /var/run/sshd &&
+               echo 'root:ansible' | chpasswd &&
+               sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+               /usr/sbin/sshd -D"
+    networks:
+      - ansible-lab
+    expose:
+      - "22"
+
+  db-server-2:
+    image: ubuntu:22.04
+    hostname: db02
+    container_name: ansible-lab-db02
+    command: |
+      bash -c "apt-get update && 
+               apt-get install -y openssh-server python3 sudo &&
+               mkdir -p /var/run/sshd &&
+               echo 'root:ansible' | chpasswd &&
+               sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+               /usr/sbin/sshd -D"
+    networks:
+      - ansible-lab
+    expose:
+      - "22"
+
+  # Application servers (3 instances)
+  app-server-1:
+    image: ubuntu:22.04
+    hostname: app01
+    container_name: ansible-lab-app01
+    command: |
+      bash -c "apt-get update && 
+               apt-get install -y openssh-server python3 sudo &&
+               mkdir -p /var/run/sshd &&
+               echo 'root:ansible' | chpasswd &&
+               sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+               /usr/sbin/sshd -D"
+    networks:
+      - ansible-lab
+    expose:
+      - "22"
+
+  app-server-2:
+    image: ubuntu:22.04
+    hostname: app02
+    container_name: ansible-lab-app02
+    command: |
+      bash -c "apt-get update && 
+               apt-get install -y openssh-server python3 sudo &&
+               mkdir -p /var/run/sshd &&
+               echo 'root:ansible' | chpasswd &&
+               sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+               /usr/sbin/sshd -D"
+    networks:
+      - ansible-lab
+    expose:
+      - "22"
+
+  app-server-3:
+    image: ubuntu:22.04
+    hostname: app03
+    container_name: ansible-lab-app03
+    command: |
+      bash -c "apt-get update && 
+               apt-get install -y openssh-server python3 sudo &&
+               mkdir -p /var/run/sshd &&
+               echo 'root:ansible' | chpasswd &&
+               sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+               /usr/sbin/sshd -D"
+    networks:
+      - ansible-lab
+    expose:
+      - "22"
+
+  # Monitoring servers (2 instances)
+  monitor-server-1:
+    image: ubuntu:22.04
+    hostname: monitor01
+    container_name: ansible-lab-monitor01
+    command: |
+      bash -c "apt-get update && 
+               apt-get install -y openssh-server python3 sudo &&
+               mkdir -p /var/run/sshd &&
+               echo 'root:ansible' | chpasswd &&
+               sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+               /usr/sbin/sshd -D"
+    networks:
+      - ansible-lab
+    expose:
+      - "22"
+
+  monitor-server-2:
+    image: ubuntu:22.04
+    hostname: monitor02
+    container_name: ansible-lab-monitor02
+    command: |
+      bash -c "apt-get update && 
+               apt-get install -y openssh-server python3 sudo &&
+               mkdir -p /var/run/sshd &&
+               echo 'root:ansible' | chpasswd &&
+               sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+               /usr/sbin/sshd -D"
+    networks:
+      - ansible-lab
+    expose:
+      - "22"
+
+networks:
+  ansible-lab:
+    driver: bridge
+    name: ansible-lab-network

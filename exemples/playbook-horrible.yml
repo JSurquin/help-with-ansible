@@ -1,0 +1,159 @@
+---
+# HORRIBLE playbook - example of ALL bad practices
+# NEVER REPRODUCE THIS!
+
+- hosts: all
+  become: yes
+  gather_facts: no
+  vars:
+    x: "nginx"
+    y: 80
+    z: "/var/www"
+    a: true
+    b: false
+    c: "{{ lookup('env', 'HOME') }}"
+    d: ['item1','item2','item3']
+    e: {key1: val1, key2: val2}
+  tasks:
+    - name: task1
+      shell: |
+        apt update
+        apt install -y nginx
+        service nginx start
+        echo "done" > /tmp/x.txt
+      ignore_errors: yes
+      register: r1
+    
+    - shell: "mkdir -p {{ z }}/{{ x }} && cd {{ z }}/{{ x }} && touch index.html && echo '<h1>Test</h1>' > index.html && chmod 777 index.html"
+      when: r1.rc == 0 or r1.rc == 1 or r1.rc == 2
+    
+    - name: x
+      command: bash -c "if [ -f /etc/nginx/nginx.conf ]; then sed -i 's/80/{{ y }}/g' /etc/nginx/nginx.conf; fi"
+      ignore_errors: true
+    
+    - shell: echo "{{ item }}" >> /tmp/log.txt
+      with_items: "{{ d }}"
+      ignore_errors: yes
+    
+    - name: y
+      shell: |
+        if [ "{{ a }}" == "True" ]; then
+          echo "a is true"
+          if [ "{{ b }}" == "False" ]; then
+            echo "b is false"
+            cat /etc/passwd | grep root | awk '{print $1}' | head -1 > /tmp/user.txt
+          fi
+        fi
+      register: z1
+    
+    - debug: var=z1
+    
+    - name: z
+      raw: apt install -y git curl wget vim nano htop net-tools
+      
+    - shell: cd /tmp && git clone https://github.com/test/test.git || true
+    
+    - command: "find / -name '*.log' -type f -delete"
+      ignore_errors: yes
+      when: z1.stdout != ""
+    
+    - name: complex_task
+      shell: |
+        #!/bin/bash
+        declare -A arr
+        arr[key1]="value1"
+        arr[key2]="value2"
+        for key in "${!arr[@]}"; do
+          echo "$key: ${arr[$key]}" >> /tmp/array.txt
+        done
+        
+        counter=0
+        while [ $counter -lt 10 ]; do
+          echo $counter >> /tmp/counter.txt
+          counter=$((counter + 1))
+        done
+        
+        if [ -f /etc/os-release ]; then
+          cat /etc/os-release | grep -i ubuntu && echo "ubuntu" > /tmp/os.txt || echo "other" > /tmp/os.txt
+        fi
+        
+        ps aux | grep nginx | grep -v grep | awk '{print $2}' | xargs -r kill -9 || true
+        service nginx restart || /etc/init.d/nginx restart
+      args: {executable: /bin/bash}
+      register: output
+      changed_when: false
+      failed_when: false
+    
+    - name: install_with_pip
+      shell: pip install django flask fastapi || pip3 install django flask fastapi || python -m pip install django flask fastapi || python3 -m pip install django flask fastapi
+      ignore_errors: yes
+    
+    - command: dd if=/dev/zero of=/tmp/testfile bs=1M count=100
+      async: 0
+      poll: 0
+    
+    - name: multiple_commands
+      shell: "cd /tmp && ls -la && pwd && whoami && id && groups && cat /etc/hosts | grep localhost"
+    
+    - shell: curl -s https://api.github.com/users/octocat | jq '.login' > /tmp/user.json || wget -qO- https://api.github.com/users/octocat > /tmp/user.json
+      ignore_errors: true
+    
+    - name: nested_loop
+      shell: for i in {1..5}; do for j in {1..5}; do echo "$i-$j" >> /tmp/nested.txt; done; done
+    
+    - debug: {msg: "{{ output }}"}
+    
+    - shell: cat /tmp/nested.txt | while read line; do echo "Processing: $line"; done
+      when: output is defined and output.rc is defined and (output.rc == 0 or output.rc == 1 or output.rc == 2 or output.rc == 127)
+    
+    - name: file_management
+      shell: |
+        cp /etc/nginx/nginx.conf /tmp/nginx.conf.backup || true
+        sed -i 's/worker_processes.*/worker_processes 4;/g' /etc/nginx/nginx.conf || true
+        sed -i 's/worker_connections.*/worker_connections 2048;/g' /etc/nginx/nginx.conf || true
+        grep -q "gzip on" /etc/nginx/nginx.conf || echo "gzip on;" >> /etc/nginx/nginx.conf
+        
+    - command: service nginx restart
+      ignore_errors: yes
+    
+    - shell: "echo '{{ x }}' | base64 | rev | base64 -d > /tmp/encoded.txt"
+    
+    - name: permissions
+      shell: chmod -R 777 /var/www && chown -R www-data:www-data /var/www && find /var/www -type f -exec chmod 666 {} \; && find /var/www -type d -exec chmod 777 {} \;
+    
+    - raw: 'echo "* * * * * root /usr/bin/python3 /tmp/script.py" >> /etc/crontab'
+    
+    - shell: 'ps aux | sort -nk 3,3 | tail -5'
+      register: top_cpu
+    
+    - debug: msg="{{ top_cpu.stdout_lines }}"
+    
+    - name: finale
+      shell: |
+        echo "Installation complete" > /tmp/final.txt
+        date >> /tmp/final.txt
+        uptime >> /tmp/final.txt
+        df -h >> /tmp/final.txt
+        free -m >> /tmp/final.txt
+        cat /tmp/final.txt
+      register: final_output
+    
+    - debug: var=final_output.stdout_lines
+
+- name: Second play with no organization
+  hosts: all
+  become: true
+  tasks:
+  - shell: apt install -y mysql-server
+    ignore_errors: yes
+  - command: mysql -e "CREATE DATABASE IF NOT EXISTS testdb;"
+    ignore_errors: true
+  - shell: mysql -e "CREATE USER IF NOT EXISTS 'user'@'localhost' IDENTIFIED BY 'password';"
+    ignore_errors: yes
+  - command: mysql -e "GRANT ALL PRIVILEGES ON testdb.* TO 'user'@'localhost';"
+    ignore_errors: yes
+  - shell: mysql -e "FLUSH PRIVILEGES;"
+  - raw: echo "DB_HOST=localhost" > /tmp/.env && echo "DB_USER=user" >> /tmp/.env && echo "DB_PASS=password" >> /tmp/.env
+
+- hosts: all
+  tasks: [{name: last_task, shell: "echo 'Done!' && reboot", ignore_errors: yes, async: 1, poll: 0}]

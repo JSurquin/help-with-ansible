@@ -1,0 +1,40 @@
+--- # Start of YAML document
+# Main playbook: full deployment
+
+- name: Common configuration for all servers # First play: common config
+  hosts: all # Apply to all servers
+  roles: # Roles to execute
+    - role: common # Base configuration role
+      tags: ['common', 'base'] # Tags for selective execution
+
+- name: Web server configuration # Second play: web servers
+  hosts: webservers # Apply only to the webservers group
+  roles: # Roles to execute
+    - role: nginx # Nginx installation and configuration role
+      tags: ['nginx', 'web'] # Tags for selective execution
+
+- name: Application deployment # Third play: application
+  hosts: appservers # Apply only to the appservers group
+  roles: # Roles to execute
+    - role: app # Application deployment role
+      tags: ['app', 'application'] # Tags for selective execution
+
+- name: Monitoring configuration # Fourth play: monitoring
+  hosts: monitoring # Apply only to the monitoring group
+  roles: # Roles to execute
+    - role: monitoring # Monitoring configuration role
+      tags: ['monitoring', 'observability'] # Tags for selective execution
+
+# Post-deployment
+- name: Post-deployment checks # Fifth play: final checks
+  hosts: all # Apply to all servers
+  tasks: # Tasks to execute
+    - name: Display deployment summary # Summary display task
+      debug: # Debug module to display information
+        msg: | # Multiline message
+          ✅ Deployment completed successfully!
+          🌍 Environment: {{ app_environment }}
+          🏷️ Version: {{ app_version }}
+          📊 Servers: {{ ansible_play_hosts | length }}
+      run_once: true # Run only once (not on every host)
+      tags: ['always'] # always tag: executed even with --tags

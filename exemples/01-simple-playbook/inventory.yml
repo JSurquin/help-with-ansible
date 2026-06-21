@@ -1,0 +1,16 @@
+# Simple inventory: list of servers to manage
+all:
+  vars:
+    # Variables common to all servers
+    ansible_connection: docker
+    ansible_user: root
+    #ansible_python_interpreter: /opt/homebrew/bin/python3
+
+  hosts:
+    # Web server
+    web01:
+      ansible_host: ansible-lab-web01
+
+# hosts directly = flat inventory
+# children = structured inventory with groups
+# Both are valid. Choose based on how complex your infrastructure is.

@@ -1,0 +1,82 @@
+# Instructions
+
+c'est un projet (formation docker + ansible) avec slidev , vérifiez si le contenu d'une diapositive est trop long pour s'adapter confortablement sur une seule diapositive.
+Si c'est le cas, divisez le contenu en plusieurs diapositives tout en conservant toutes les informations.
+Utilisez la syntaxe Slidev Markdown (par exemple, '--- pour séparer les diapositives).
+Assurez-vous que le contenu divisé circule logiquement et ne perturbe pas le récit.
+
+ET NE SUPPRIME ABSOLUMENT RIEN de toi même !
+ne supprime aucun routeAlias non plus , ne supprime RIEN
+
+
+attention je précise : certains bloc de code sont tellement gros qu'il dépasse une slide complète, 
+dans ce cas : divise le en plusieurs slides MAIS EN GARDANT TOUT LE CODE , NE SUPPRIME RIEN , l'idée est juste d'avoir donc deux (ou plusieurs) bloc de code à la place quand le code est trop long
+
+exemple : 
+
+```jsx
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Hello World</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  text: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+});
+```
+
+ça c'est déjà trop long , il faudrais le diviser en deux bloc ...
+
+(c'est qu'un exemple)
+
+je t'ai mis un exemple de md trop long qui fais que ça dépasse 1 slides , donc à diviser :
+
+# Disclaimer concernant Expo
+
+- **Limitations de personnalisation**
+  - Accès limité aux modules natifs personnalisés
+  - Impossibilité d'utiliser certaines bibliothèques natives non supportées
+  - Configuration native restreinte
+
+- **Taille des applications**
+  - Applications plus volumineuses car inclusion de nombreuses dépendances
+  - Impact sur le temps de téléchargement initial
+
+- **Dépendance à Expo**
+  - Mises à jour forcées de l'écosystème Expo
+  - Difficultés potentielles pour "éjecter" le projet plus tard
+  - Dépendance aux serveurs Expo pour certaines fonctionnalités
+
+- **Performance**
+  - Légère baisse de performance par rapport à React Native pur
+  - Temps de compilation plus longs
+  - Consommation mémoire plus importante
+
+tu vois ça c'est trop long
+
+autre chose : après un bloc de code, passe directement à la slide d'après , imaginons un bloc de code :
+
+```js
+console.log(hello world)````
+
+je suis un texte en dessous
+
+et ben le : je suis un texte en dessous je veux que tu le sépare pour faire une autre slide, pas de texte en dessous du bloc de code, ça sera sur la slide d'après
+
+attention on est en 2026 donc on utilise docker de 2026 et ansible de 2026 ! n'hésite pas à te renseigner sur les nouveautés de ces versions !

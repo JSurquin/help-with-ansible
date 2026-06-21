@@ -1,0 +1,94 @@
+---
+# Playbook with variables and templates
+# DOCKER ENVIRONMENT NOTE:
+# This playbook is adapted for Docker containers that do not have systemd.
+# In production (VMs, bare metal), you would normally use:
+#   - The 'service' module instead of direct shell commands
+#   - systemctl start/restart nginx instead of /usr/sbin/nginx
+# For a training lab with Docker, we use native nginx commands instead.
+
+- name: Deploy with custom configuration
+  hosts: webservers
+  become: true
+  
+  tasks:
+    # Task 1: Install Nginx
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    
+    # Task 2: Create the web directory
+    - name: Create the web directory
+      file:
+        path: /var/www/html
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+    
+    # Task 3: Generate Nginx configuration from template
+    - name: Configure Nginx with template
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes  # Backup the previous file
+      notify: Restart Nginx
+    
+    # Task 4: Generate the custom HTML page
+    - name: Deploy the custom HTML page
+      template:
+        src: templates/index.html.j2
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+    
+    # Task 5: Ensure Nginx is running
+    # IMPORTANT: In Docker, we do NOT use systemd/service because:
+    # - Docker containers are minimal and do not include systemd
+    # - systemd requires special privileges (--privileged) and mounted volumes
+    # - init scripts (/etc/init.d/) do not work correctly in containers
+    # - For a training lab, we therefore use direct nginx commands
+    # Note: In production on VMs/bare metal, you would normally use the 'service' module
+    
+    - name: Verify Nginx configuration
+      command: nginx -t
+      register: nginx_test
+      changed_when: false
+      failed_when: nginx_test.rc != 0
+    
+    - name: Start Nginx
+      shell: |
+        # Stop nginx if it is already running
+        pkill nginx || true
+        # Start nginx directly (not via systemd/init)
+        /usr/sbin/nginx
+      args:
+        executable: /bin/bash
+      register: nginx_start
+      changed_when: true
+    
+    # Task 6: Display deployment information
+    - name: Display deployment information
+      debug:
+        msg: |
+          ✅ Deployment completed for {{ inventory_hostname }}
+          🌐 Application: {{ app_name }} v{{ app_version }}
+          🏷️ Environment: {{ app_environment }}
+          🔗 URL: http://{{ ansible_host }}:{{ nginx_config.port }}
+  
+  # Handlers: actions triggered by notify
+  # Same reason as for startup: no systemd in Docker containers
+  # We use native nginx commands:
+  # - 'nginx -s reload' to reload config hot (if nginx is running)
+  # - Otherwise fully restart nginx (after config test)
+  handlers:
+    - name: Restart Nginx
+      shell: nginx -t && nginx -s reload || (pkill nginx && /usr/sbin/nginx)
+      args:
+        executable: /bin/bash

@@ -1,0 +1,22 @@
+---
+# Group variables used by templates/nginx.conf.j2
+nginx_worker_connections: 2048
+# 8080 avoids conflict if Apache (other exercises) already uses port 80 on the lab
+nginx_listen_port: 8080
+# server_name depends on the node (Ansible hostname)
+nginx_server_name: "{{ inventory_hostname }}.lab.local"
+nginx_docroot: /var/www/html
+nginx_index_files:
+  - index.html
+  - index.htm
+nginx_enable_gzip: true
+nginx_gzip_types:
+  - text/plain
+  - text/css
+  - application/javascript
+  - application/json
+nginx_client_max_body_size: 2m
+# Optional headers (Jinja loop in the template)
+nginx_extra_headers:
+  X-Lab-Exercise: "nginx-jinja"
+  X-Frame-Options: "SAMEORIGIN"

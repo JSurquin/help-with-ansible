@@ -1,0 +1,35 @@
+---
+- name: Update APT cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install Apache2
+  apt:
+    name: "{{ apache_package }}"
+    state: present
+
+- name: Create web site directory
+  file:
+    path: "{{ apache_document_root }}"
+    state: directory
+    mode: '0755'
+
+- name: Deploy Apache2 configuration
+  template:
+    src: apache2.conf.j2
+    dest: "{{ apache_config_path }}"
+    mode: '0644'
+  notify: restart apache2
+
+- name: Deploy home page
+  template:
+    src: index.html.j2
+    dest: "{{ apache_document_root }}/index.html"
+    mode: '0644'
+
+- name: Ensure Apache2 is started and enabled
+  service:
+    name: "{{ apache_service }}"
+    state: started
+    enabled: yes

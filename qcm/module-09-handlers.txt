@@ -1,0 +1,50 @@
+═══════════════════════════════════════════════════════════════
+    MINI-QUIZ: Module 9 - Handlers
+═══════════════════════════════════════════════════════════════
+
+Question 1: When is a handler executed?
+
+A) Immediately when notified
+B) At the end of the playbook, only if notified and the task changed
+C) At the start of the play
+
+───────────────────────────────────────────────────────────────
+
+Question 2: How do you call a handler?
+
+A) `trigger: handler_name`
+B) `notify: handler_name`
+C) `call: handler_name`
+
+───────────────────────────────────────────────────────────────
+
+Question 3: The handler name must be:
+
+A) Identical to the name in `notify:` (case-sensitive)
+B) Anything, Ansible finds it automatically
+C) Uppercase only
+
+═══════════════════════════════════════════════════════════════
+                        ANSWERS
+═══════════════════════════════════════════════════════════════
+
+Question 1: B ✓
+Explanation: Handlers run at the END of the playbook, only if
+two conditions are met:
+1. The handler was notified (via `notify:`)
+2. The task that notified it changed something (changed: true)
+This avoids unnecessary restarts.
+
+Question 2: B ✓
+Explanation: Use `notify: handler_name` in a task. The matching
+handler is queued and executed at the end of the play if the
+task changed something.
+
+Question 3: A ✓
+Explanation: The handler name in the `handlers:` section must be
+EXACTLY identical to the name in `notify:`. Case-sensitive:
+- Case: "restart nginx" ≠ "Restart nginx"
+- Spaces: "restart nginx" ≠ "restart_nginx"
+- Every character matters
+
+═══════════════════════════════════════════════════════════════

@@ -1,0 +1,49 @@
+═══════════════════════════════════════════════════════════════
+    MINI-QUIZ: Module 8 - Jinja2 templates
+═══════════════════════════════════════════════════════════════
+
+Question 1: Where does Ansible look for templates by default?
+
+A) In the current directory
+B) In `templates/`
+C) In `/etc/ansible/templates/`
+
+───────────────────────────────────────────────────────────────
+
+Question 2: What is the syntax to display a variable in a template?
+
+A) `${ variable }`
+B) `{{ variable }}`
+C) `<%= variable %>`
+
+───────────────────────────────────────────────────────────────
+
+Question 3: The `dest:` parameter of the template module must be:
+
+A) Relative to the templates/ folder
+B) An absolute path on the remote server
+C) Any path
+
+═══════════════════════════════════════════════════════════════
+                        ANSWERS
+═══════════════════════════════════════════════════════════════
+
+Question 1: B ✓
+Explanation: Ansible automatically looks in the `templates/`
+folder at the playbook root, or in `roles/ROLE_NAME/templates/`
+when using roles. No need to specify the full path.
+
+Question 2: B ✓
+Explanation: Jinja2 uses:
+- `{{ variable }}` to display a value
+- `{% if condition %}` for conditions
+- `{% for item in list %}` for loops
+- `{# comment #}` for comments
+
+Question 3: B ✓
+Explanation:
+- `src:` is relative (Ansible looks in templates/)
+- `dest:` must be an absolute path on the remote server
+  e.g. dest: /etc/nginx/nginx.conf
+
+═══════════════════════════════════════════════════════════════

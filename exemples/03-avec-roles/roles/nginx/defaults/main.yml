@@ -1,0 +1,34 @@
+--- # Start of YAML document
+# Default variables for the nginx role
+# These values can be overridden in the playbook
+
+# Basic configuration
+nginx_user: "www-data" # System user under which Nginx runs
+nginx_worker_processes: "auto" # Number of worker processes (auto = CPU count)
+nginx_worker_connections: 1024 # Concurrent connections per worker
+nginx_keepalive_timeout: 65 # Seconds before closing an idle connection
+
+# Ports
+nginx_listen_port: 80 # Standard HTTP listen port
+nginx_listen_ipv6: true # Enable IPv6 listening
+
+# Paths
+nginx_conf_path: "/etc/nginx/nginx.conf" # Main configuration file path
+nginx_vhost_path: "/etc/nginx/sites-available" # Available vhosts directory
+nginx_vhost_enabled_path: "/etc/nginx/sites-enabled" # Enabled vhosts directory
+nginx_log_path: "/var/log/nginx" # Log files directory
+
+# Virtual hosts (can be defined in the playbook)
+nginx_vhosts: [] # Empty list of vhosts to configure by default
+#  - server_name: "example.com" # Example: vhost domain name
+#    root: "/var/www/example" # Example: site root directory
+#    port: 80 # Example: vhost listen port
+
+# Options
+nginx_remove_default_vhost: true # Remove Nginx default vhost
+nginx_gzip_enabled: true # Enable Gzip compression
+nginx_client_max_body_size: "10m" # Maximum request size (uploads)
+
+# Service management
+nginx_service_state: "started" # Desired service state (started/stopped)
+nginx_service_enabled: true # Enable the service at system boot

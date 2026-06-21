@@ -1,0 +1,42 @@
+services:
+  database:
+    image: postgres:15
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: myapp
+      POSTGRES_PASSWORD: secret
+    networks:
+      - app-data
+      - app-network
+    restart: unless-stopped
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis-data:/data
+    networks:
+      - app-network
+  web:
+    #build: .
+    image: node:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+      - redis
+    networks:
+      - app-network
+    working_dir: /app
+    command: npm start
+
+networks:
+  app-network:
+    driver: bridge
+  app-data:
+    driver: bridge
+
+volumes: # Shared volumes
+  db-data:
+    driver: local
+  redis-data:
+    driver: local

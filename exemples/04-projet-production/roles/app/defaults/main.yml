@@ -1,0 +1,6 @@
+---
+# Default values for the app role
+
+app_dir: "/opt/app"
+app_port: 8080
+app_user: "appuser"

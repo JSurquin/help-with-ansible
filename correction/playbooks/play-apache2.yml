@@ -1,0 +1,5 @@
+- name: Configure Apache2 servers
+  hosts: apache_servers
+  become: yes
+  roles:
+    - apache2

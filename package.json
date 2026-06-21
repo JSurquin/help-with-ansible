@@ -1,0 +1,64 @@
+{
+  "name": "help-with-ansible",
+  "type": "module",
+  "version": "2.2.2",
+  "packageManager": "pnpm@9.1.4",
+  "description": "A Penguin theme for Slidev",
+  "author": "Jimmylan Surquin <jimmylan.surquin@andromed.fr>",
+  "license": "MIT",
+  "homepage": "https://jimmylan.fr/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimmylansrq/slidev-theme-penguin.git"
+  },
+  "bugs": "https://github.com/jimmylansrq/slidev-theme-penguin/issues",
+  "keywords": [
+    "slidev-theme",
+    "slidev",
+    "slidev-penguin"
+  ],
+  "slidev": {
+    "colorSchema": "both",
+    "highlighter": "shiki",
+    "default": {
+      "aspectRatio": "16/9",
+      "fonts": {
+        "sans": "Inter",
+        "title": "Gilroy",
+        "mono": "Fira Code"
+      }
+    }
+  },
+  "scripts": {
+    "dev": "slidev slides.md --open",
+    "build": "slidev build slides.md",
+    "export": "slidev export slides.md",
+    "release": "release-it",
+    "screenshot": "slidev export slides.md --format png",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@alvarosabu/ui": "3.0.0",
+    "@clerk/vue": "^1.4.2",
+    "@slidev/client": "^0.49.29",
+    "@slidev/theme-default": "^0.25.0",
+    "@slidev/types": "^0.49.29",
+    "prism-theme-vars": "^0.2.5",
+    "slidev-addon-tldraw": "^0.4.2",
+    "vite-svg-loader": "^5.1.0",
+    "vue": "link: @clerk/vue"
+  },
+  "devDependencies": {
+    "@alvarosabu/eslint-config": "^1.2.0",
+    "@iconify-json/la": "^1.1.9",
+    "@iconify-json/logos": "^1.1.44",
+    "@iconify-json/simple-icons": "^1.1.115",
+    "@release-it/conventional-changelog": "^8.0.1",
+    "@slidev/cli": "0.49.29",
+    "eslint": "^9.9.1",
+    "playwright-chromium": "^1.47.2",
+    "release-it": "^17.6.0",
+    "sass": "^1.77.8"
+  }
+}

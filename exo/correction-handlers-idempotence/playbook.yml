@@ -1,0 +1,19 @@
+---
+# Minimal playbook: one file resource + one handler (proof in /tmp).
+- name: Handlers and idempotence lab
+  hosts: handler_lab
+  gather_facts: false
+
+  tasks:
+    - name: Deploy configuration from template
+      ansible.builtin.template:
+        src: lab-handlers.conf.j2
+        dest: /etc/lab-handlers-test.conf
+        mode: "0644"
+      notify: Log handler execution
+
+  handlers:
+    - name: Log handler execution
+      ansible.builtin.shell:
+        cmd: 'printf "%s handler-fired\n" "$(date -Iseconds)" >> /tmp/lab_handler_audit.log'
+        executable: /bin/bash

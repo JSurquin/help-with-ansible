@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apache2 Server - {{ ansible_facts['hostname'] }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 600px;
+        }
+        h1 {
+            margin: 0 0 20px 0;
+            font-size: 2.5em;
+        }
+        .info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .label {
+            font-weight: bold;
+            color: #ffd700;
+        }
+        .logo {
+            font-size: 4em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🚀</div>
+        <h1>Apache2 Server</h1>
+        
+        <div class="info">
+            <span class="label">Hostname:</span> {{ ansible_facts['hostname'] }}
+        </div>
+        
+        <div class="info">
+            <span class="label">Server ID:</span> {{ server_id }}
+        </div>
+        
+        <div class="info">
+            <span class="label">Port:</span> {{ apache_port }}
+        </div>
+        
+        <div class="info">
+            <span class="label">Distribution:</span> {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}
+        </div>
+        
+        <div class="info">
+            <span class="label">Admin:</span> {{ admin_email }}
+        </div>
+        
+        <div class="info" style="margin-top: 30px; text-align: center;">
+            ✅ Configured with Ansible 2026
+        </div>
+    </div>
+</body>
+</html>

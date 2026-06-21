@@ -1,0 +1,52 @@
+---
+- name: Nginx via variables and Jinja2 template
+  hosts: webservers
+  gather_facts: true
+  become: false
+
+  tasks:
+    - name: Install nginx packages
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: true
+
+    - name: Ensure document root directory
+      ansible.builtin.file:
+        path: "{{ nginx_docroot }}"
+        state: directory
+        mode: "0755"
+
+    - name: Minimal home page
+      ansible.builtin.copy:
+        dest: "{{ nginx_docroot }}/index.html"
+        mode: "0644"
+        content: |
+          <!DOCTYPE html>
+          <html lang="en"><head><meta charset="utf-8"><title>{{ inventory_hostname }}</title></head>
+          <body><h1>{{ inventory_hostname }}</h1><p>Lab nginx + Jinja2</p></body></html>
+
+    - name: Deploy nginx.conf from template
+      ansible.builtin.template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        mode: "0644"
+        validate: nginx -t -c %s
+
+    - name: Stop nginx (pidfile often stale in container after conf change)
+      ansible.builtin.shell: pkill -x nginx
+      failed_when: false
+      changed_when: false
+
+    - name: Remove leftover pidfile if any
+      ansible.builtin.file:
+        path: /run/nginx.pid
+        state: absent
+
+    - name: Verify nginx syntax
+      ansible.builtin.command:
+        cmd: nginx -t
+      changed_when: false
+
+    - name: Start nginx
+      ansible.builtin.command: nginx

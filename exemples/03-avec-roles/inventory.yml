@@ -1,0 +1,16 @@
+# Inventory for the roles example
+all: # Root group containing all servers
+  vars: # Variables common to all servers
+    ansible_connection: docker # Connection type: Docker (for the lab)
+    ansible_user: root # User for connecting to containers
+    #ansible_python_interpreter: /usr/bin/python3 # Python interpreter path on target hosts
+
+  children: # Host subgroups
+    webservers: # Web server group
+      hosts: # Servers in the webservers group
+        web01: # First web server
+          ansible_host: ansible-lab-web01 # Docker container name
+        web02: # Second web server
+          ansible_host: ansible-lab-web02 # Docker container name
+        web03: # Third web server
+          ansible_host: ansible-lab-web03 # Docker container name

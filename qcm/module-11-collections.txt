@@ -1,0 +1,52 @@
+═══════════════════════════════════════════════════════════════
+    MINI-QUIZ: Module 11 - Collections
+═══════════════════════════════════════════════════════════════
+
+Question 1: What is an Ansible collection?
+
+A) A group of servers
+B) A pack of specialized modules
+C) A type of playbook
+
+───────────────────────────────────────────────────────────────
+
+Question 2: How do you install a collection?
+
+A) `ansible install community.docker`
+B) `ansible-galaxy collection install community.docker`
+C) `pip install ansible-collection-docker`
+
+───────────────────────────────────────────────────────────────
+
+Question 3: The format `community.docker.docker_container` means:
+
+A) community = namespace, docker = collection, docker_container = module
+B) It is just a long module name
+C) community.docker is obsolete
+
+═══════════════════════════════════════════════════════════════
+                        ANSWERS
+═══════════════════════════════════════════════════════════════
+
+Question 1: B ✓
+Explanation: A collection is a pack of specialized modules for
+a technology or domain. For example:
+- community.docker: modules for Docker
+- amazon.aws: modules for AWS
+- kubernetes.core: modules for Kubernetes
+Collections allow updates independent of Ansible core.
+
+Question 2: B ✓
+Explanation: The correct command is
+`ansible-galaxy collection install name.collection`.
+Ansible Galaxy is the package manager for collections and roles.
+It downloads from the central repository or from Git.
+
+Question 3: A ✓
+Explanation: FQCN (Fully Qualified Collection Name) format:
+- namespace: owner (community, ansible, amazon...)
+- collection: technology domain (docker, aws, posix...)
+- module: specific module name
+Always use the full name since Ansible 2.10+.
+
+═══════════════════════════════════════════════════════════════

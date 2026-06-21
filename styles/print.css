@@ -1,0 +1,102 @@
+@media print, (max-width: 1024px) {
+  /* Ciblage spécifique des slides */
+  [data-slidev-no] {
+    page-break-after: always;
+    page-break-inside: avoid;
+  }
+
+  /* Réduction de la taille du texte dans les blocs de code */
+  [data-slidev-no] .slidev-layout .slidev-code-wrapper pre,
+  [data-slidev-no] .slidev-layout pre {
+    font-size: 0.6em !important;
+    line-height: 1.1 !important;
+    padding: 0.3em !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow: hidden !important;
+    background-color: #3e5066 !important;
+    color: #f8f8f2 !important;
+  }
+
+  /* Ajustement de la hauteur maximale des blocs de code */
+  [data-slidev-no] .slidev-layout .slidev-code-wrapper,
+  [data-slidev-no] .slidev-layout .slidev-code {
+    max-height: 90vh !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ajustement des marges pour optimiser l'espace */
+  [data-slidev-no] .slidev-layout .slidev-code-wrapper pre code,
+  [data-slidev-no] .slidev-layout pre code {
+    padding: 0.3em !important;
+    font-size: inherit !important;
+    background: transparent !important;
+    color: #f8f8f2 !important;
+  }
+
+  /* Ajustement de la taille des numéros de ligne si présents */
+  [data-slidev-no] .slidev-layout .slidev-code-wrapper .line-numbers,
+  [data-slidev-no] .slidev-layout .line-numbers {
+    font-size: 0.6em !important;
+    padding-right: 0.4em !important;
+    color: #f8f8f2 !important;
+  }
+
+  /* Ajustement spécifique pour Playwright */
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+
+  /* Force le mode paysage pour les slides */
+  .slidev-page {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Ajustement des conteneurs de code */
+  [data-slidev-no] .slidev-layout .slidev-code-wrapper,
+  [data-slidev-no] .slidev-layout .slidev-code {
+    transform: scale(0.95) !important;
+    transform-origin: top left !important;
+  }
+
+  /* Désactivation des scrollbars en mode print */
+  [data-slidev-no] .slidev-layout .slidev-code::-webkit-scrollbar,
+  [data-slidev-no] .slidev-layout pre::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Correction du fond gris sur les slides new-section lors de l'export PDF */
+  .slidev-layout.new-section.bg-section {
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  .bg-section {
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  .bg-section,
+  .bg-section::before,
+  .bg-section::after {
+    background: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+  }
+
+  .bg-section,
+  .bg-section::before,
+  .bg-section::after {
+    background-color: transparent !important;
+  }
+}

@@ -1,0 +1,39 @@
+---
+# Simple playbook: install Nginx
+- name: Install and configure Nginx
+  hosts: all
+  become: true  # Run with sudo
+  
+  vars:
+    # Variables used in the playbook
+    nginx_port: 80
+    server_name: web01
+  
+  tasks:
+    # Task 1: Update the package cache
+    - name: Update APT cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600  # Cache valid for 1 hour
+    
+    # Task 2: Install Nginx
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present  # Ensure Nginx is installed
+    
+    # Task 3: Start and enable Nginx
+    - name: Start and enable Nginx
+      service:
+        name: nginx
+        state: started  # Start the service
+        enabled: yes    # Enable at boot
+    
+    # Task 4: Display a success message
+    - name: Display deployment information
+      debug:
+        msg: |
+          ✅ Nginx installed successfully!
+          🌐 Server: {{ server_name }}
+          📍 Port: {{ nginx_port }}
+          🔗 URL: http://{{ ansible_host }}:{{ nginx_port }}

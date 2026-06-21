@@ -1,0 +1,1093 @@
+2026-01-23 15:31:17,206 p=4968 u=jimmy n=ansible INFO| web01 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2026-01-23 15:31:29,078 p=5608 u=jimmy n=ansible ERROR| [ERROR]: The 'community.general.yaml' callback plugin has been removed. The plugin has been superseded by the option `result_format=yaml` in callback plugin ansible.builtin.default from ansible-core 2.13 onwards. This feature was removed from collection 'community.general' version 12.0.0.
+
+2026-01-23 15:31:49,341 p=6608 u=jimmy n=ansible INFO| PLAY [Configuration commune de tous les serveurs] ******************************
+2026-01-23 15:31:49,349 p=6608 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 15:31:51,334 p=6608 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:31:51,338 p=6608 u=jimmy n=ansible INFO| TASK [common : Mettre à jour le cache APT] *************************************
+2026-01-23 15:31:52,910 p=6608 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:31:52,923 p=6608 u=jimmy n=ansible INFO| TASK [common : Installer les packages communs] *********************************
+2026-01-23 15:37:14,737 p=6608 u=jimmy n=ansible WARNING| [WARNING]: Error deleting remote temporary files (rc: 1, stderr: Error response from daemon: container b418ce1c3c3a1314a9ef832209d112041a9f0add43e0646078d537ceba5a6613 is not running
+})
+
+
+2026-01-23 15:37:14,739 p=6608 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Action failed: Module result deserialization failed: No start of json char found
+
+Task failed: Action failed.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/roles/common/tasks/main.yml:9:3
+
+7     cache_valid_time: 3600
+8
+9 - name: Installer les packages communs
+    ^ column 3
+
+<<< caused by >>>
+
+Module result deserialization failed: No start of json char found See stdout/stderr for the returned output.
+
+
+2026-01-23 15:37:14,740 p=6608 u=jimmy n=ansible INFO| fatal: [web01]: FAILED! => {"changed": false, "module_stderr": "", "module_stdout": "", "msg": "Module result deserialization failed: No start of json char found", "rc": 137}
+2026-01-23 15:37:14,742 p=6608 u=jimmy n=ansible INFO| 	to retry, use: --limit @/Users/jimmy/.ansible-retry/site.retry
+
+2026-01-23 15:37:14,743 p=6608 u=jimmy n=ansible INFO| PLAY RECAP *********************************************************************
+2026-01-23 15:37:14,743 p=6608 u=jimmy n=ansible INFO| web01                      : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-01-23 15:42:39,684 p=40337 u=jimmy n=ansible INFO| web01 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2026-01-23 15:42:50,807 p=40947 u=jimmy n=ansible INFO| PLAY [Configuration commune de tous les serveurs] ******************************
+2026-01-23 15:42:50,815 p=40947 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 15:42:52,027 p=40947 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:42:52,031 p=40947 u=jimmy n=ansible INFO| TASK [common : Mettre à jour le cache APT] *************************************
+2026-01-23 15:42:54,713 p=40947 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:42:54,743 p=40947 u=jimmy n=ansible INFO| TASK [common : Installer les packages communs] *********************************
+2026-01-23 15:43:07,497 p=40947 u=jimmy n=ansible INFO| changed: [web01]
+2026-01-23 15:43:07,503 p=40947 u=jimmy n=ansible INFO| TASK [common : Configurer le timezone] *****************************************
+2026-01-23 15:43:08,045 p=40947 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Module failed: Error message:
+given timezone "Europe/Paris" is not available
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/roles/common/tasks/main.yml:14:3
+
+12     state: present
+13
+14 - name: Configurer le timezone
+     ^ column 3
+
+
+2026-01-23 15:43:08,045 p=40947 u=jimmy n=ansible INFO| fatal: [web01]: FAILED! => {"changed": false, "msg": "Error message:\ngiven timezone \"Europe/Paris\" is not available"}
+2026-01-23 15:43:08,046 p=40947 u=jimmy n=ansible INFO| 	to retry, use: --limit @/Users/jimmy/.ansible-retry/site.retry
+
+2026-01-23 15:43:08,046 p=40947 u=jimmy n=ansible INFO| PLAY RECAP *********************************************************************
+2026-01-23 15:43:08,046 p=40947 u=jimmy n=ansible INFO| web01                      : ok=3    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-01-23 15:43:39,342 p=43361 u=jimmy n=ansible INFO| PLAY [Configuration commune de tous les serveurs] ******************************
+2026-01-23 15:43:39,350 p=43361 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 15:43:40,291 p=43361 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:43:40,294 p=43361 u=jimmy n=ansible INFO| TASK [common : Mettre à jour le cache APT] *************************************
+2026-01-23 15:43:41,780 p=43361 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:43:41,791 p=43361 u=jimmy n=ansible INFO| TASK [common : Installer les packages communs] *********************************
+2026-01-23 15:43:43,947 p=43361 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:43:43,950 p=43361 u=jimmy n=ansible INFO| TASK [common : Configurer le timezone] *****************************************
+2026-01-23 15:43:43,959 p=43361 u=jimmy n=ansible WARNING| [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+
+2026-01-23 15:43:43,959 p=43361 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/roles/common/tasks/main.yml:17:9
+
+15   timezone:
+16     name: "{{ timezone }}"
+17   when: ansible_service_mgr == "systemd"
+           ^ column 9
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-23 15:43:43,959 p=43361 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-23 15:43:43,961 p=43361 u=jimmy n=ansible INFO| TASK [common : Créer les répertoires de logs] **********************************
+2026-01-23 15:43:44,476 p=43361 u=jimmy n=ansible INFO| changed: [web01]
+2026-01-23 15:43:44,480 p=43361 u=jimmy n=ansible INFO| TASK [common : Configurer la rotation des logs] ********************************
+2026-01-23 15:43:45,310 p=43361 u=jimmy n=ansible INFO| changed: [web01]
+2026-01-23 15:43:45,313 p=43361 u=jimmy n=ansible INFO| TASK [common : Désactiver les services inutiles] *******************************
+2026-01-23 15:43:45,862 p=43361 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Module failed: Could not find the requested service snapd: host
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/roles/common/tasks/main.yml:31:3
+
+29     mode: '0644'
+30
+31 - name: Désactiver les services inutiles
+     ^ column 3
+
+
+2026-01-23 15:43:45,863 p=43361 u=jimmy n=ansible INFO| failed: [web01] (item=snapd) => {"ansible_loop_var": "item", "changed": false, "item": "snapd", "msg": "Could not find the requested service snapd: host"}
+2026-01-23 15:43:45,864 p=43361 u=jimmy n=ansible INFO| ...ignoring
+2026-01-23 15:43:45,866 p=43361 u=jimmy n=ansible INFO| TASK [common : Afficher les informations système] ******************************
+2026-01-23 15:43:45,929 p=43361 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/roles/common/tasks/main.yml:42:10
+
+40 - name: Afficher les informations système
+41   debug:
+42     msg: |
+            ^ column 10
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-23 15:43:45,929 p=43361 u=jimmy n=ansible INFO| ok: [web01] => {
+    "msg": "📊 Serveur: web01\n💻 OS: Ubuntu 22.04\n🔧 CPU: 3 vCPUs\n💾 RAM: 3978MB\n🌐 IP: 192.168.147.7\n"
+}
+2026-01-23 15:43:45,933 p=43361 u=jimmy n=ansible INFO| PLAY [Configuration des serveurs web] ******************************************
+2026-01-23 15:43:45,936 p=43361 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 15:43:46,807 p=43361 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:43:46,812 p=43361 u=jimmy n=ansible INFO| PLAY [Déploiement de l'application] ********************************************
+2026-01-23 15:43:46,812 p=43361 u=jimmy n=ansible INFO| skipping: no hosts matched
+2026-01-23 15:43:46,813 p=43361 u=jimmy n=ansible INFO| PLAY [Configuration du monitoring] *********************************************
+2026-01-23 15:43:46,813 p=43361 u=jimmy n=ansible INFO| skipping: no hosts matched
+2026-01-23 15:43:46,813 p=43361 u=jimmy n=ansible INFO| PLAY [Vérifications post-déploiement] ******************************************
+2026-01-23 15:43:46,816 p=43361 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 15:43:47,925 p=43361 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:43:47,930 p=43361 u=jimmy n=ansible INFO| TASK [Afficher le résumé du déploiement] ***************************************
+2026-01-23 15:43:47,981 p=43361 u=jimmy n=ansible INFO| ok: [web01] => {
+    "msg": "✅ Déploiement terminé avec succès !\n🌍 Environnement: staging\n🏷️ Version: latest\n📊 Serveurs: 1\n"
+}
+2026-01-23 15:43:47,981 p=43361 u=jimmy n=ansible INFO| PLAY RECAP *********************************************************************
+2026-01-23 15:43:47,981 p=43361 u=jimmy n=ansible INFO| web01                      : ok=10   changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=1   
+2026-01-23 15:44:01,288 p=44529 u=jimmy n=ansible INFO| PLAY [Backup des serveurs] *****************************************************
+2026-01-23 15:44:01,294 p=44529 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 15:44:02,304 p=44529 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:44:02,307 p=44529 u=jimmy n=ansible INFO| TASK [Créer le répertoire de backup] *******************************************
+2026-01-23 15:44:02,778 p=44529 u=jimmy n=ansible WARNING| [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+
+2026-01-23 15:44:02,779 p=44529 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:9:18
+
+7   vars:
+8     backup_dir: "/backup"
+9     backup_date: "{{ ansible_date_time.date }}"
+                   ^ column 18
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-23 15:44:02,779 p=44529 u=jimmy n=ansible INFO| changed: [web01]
+2026-01-23 15:44:02,781 p=44529 u=jimmy n=ansible INFO| TASK [Backup configuration Nginx] **********************************************
+2026-01-23 15:44:03,226 p=44529 u=jimmy n=ansible INFO| changed: [web01]
+2026-01-23 15:44:03,229 p=44529 u=jimmy n=ansible INFO| TASK [Backup logs application] *************************************************
+2026-01-23 15:44:03,238 p=44529 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-23 15:44:03,241 p=44529 u=jimmy n=ansible INFO| TASK [Nettoyer les anciens backups] ********************************************
+2026-01-23 15:44:03,253 p=44529 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Finalization of task args for 'ansible.builtin.find' failed: Error while resolving value for 'age': 'backup_retention_days' is undefined
+
+Task failed.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:30:7
+
+28       when: inventory_hostname in groups['appservers']
+29     
+30     - name: Nettoyer les anciens backups
+         ^ column 7
+
+<<< caused by >>>
+
+Finalization of task args for 'ansible.builtin.find' failed.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:31:7
+
+29     
+30     - name: Nettoyer les anciens backups
+31       find:
+         ^ column 7
+
+<<< caused by >>>
+
+Error while resolving value for 'age': 'backup_retention_days' is undefined
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:33:14
+
+31       find:
+32         paths: "{{ backup_dir }}"
+33         age: "{{ backup_retention_days }}d"
+                ^ column 14
+
+
+2026-01-23 15:44:03,254 p=44529 u=jimmy n=ansible INFO| fatal: [web01]: FAILED! => {"changed": false, "msg": "Task failed: Finalization of task args for 'ansible.builtin.find' failed: Error while resolving value for 'age': 'backup_retention_days' is undefined"}
+2026-01-23 15:44:03,254 p=44529 u=jimmy n=ansible INFO| 	to retry, use: --limit @/Users/jimmy/.ansible-retry/backup.retry
+
+2026-01-23 15:44:03,254 p=44529 u=jimmy n=ansible INFO| PLAY RECAP *********************************************************************
+2026-01-23 15:44:03,254 p=44529 u=jimmy n=ansible INFO| web01                      : ok=3    changed=2    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2026-01-23 15:44:22,317 p=45573 u=jimmy n=ansible INFO| PLAY [Backup des serveurs] *****************************************************
+2026-01-23 15:44:22,322 p=45573 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 15:44:23,522 p=45573 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:44:23,525 p=45573 u=jimmy n=ansible INFO| TASK [Créer le répertoire de backup] *******************************************
+2026-01-23 15:44:24,076 p=45573 u=jimmy n=ansible WARNING| [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+
+2026-01-23 15:44:24,076 p=45573 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:9:18
+
+7   vars:
+8     backup_dir: "/backup"
+9     backup_date: "{{ ansible_date_time.date }}"
+                   ^ column 18
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-23 15:44:24,076 p=45573 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:44:24,078 p=45573 u=jimmy n=ansible INFO| TASK [Backup configuration Nginx] **********************************************
+2026-01-23 15:44:24,711 p=45573 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:44:24,714 p=45573 u=jimmy n=ansible INFO| TASK [Backup logs application] *************************************************
+2026-01-23 15:44:24,723 p=45573 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-23 15:44:24,725 p=45573 u=jimmy n=ansible INFO| TASK [Nettoyer les anciens backups] ********************************************
+2026-01-23 15:44:24,806 p=45573 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Finalization of task args for 'ansible.builtin.find' failed: Error while resolving value for 'age': Recursive loop detected in template: maximum recursion depth exceeded
+
+Task failed.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:31:7
+
+29       when: inventory_hostname in groups['appservers']
+30     
+31     - name: Nettoyer les anciens backups
+         ^ column 7
+
+<<< caused by >>>
+
+Finalization of task args for 'ansible.builtin.find' failed.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:32:7
+
+30     
+31     - name: Nettoyer les anciens backups
+32       find:
+         ^ column 7
+
+<<< caused by >>>
+
+Error while resolving value for 'age'.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:34:14
+
+32       find:
+33         paths: "{{ backup_dir }}"
+34         age: "{{ backup_retention_days }}d"
+                ^ column 14
+
+<<< caused by >>>
+
+Recursive loop detected in template: maximum recursion depth exceeded
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:10:28
+
+ 8     backup_dir: "/backup"
+ 9     backup_date: "{{ ansible_date_time.date }}"
+10     backup_retention_days: "{{ backup_retention_days | default(7) }}"
+                              ^ column 28
+
+
+2026-01-23 15:44:24,806 p=45573 u=jimmy n=ansible INFO| fatal: [web01]: FAILED! => {"changed": false, "msg": "Task failed: Finalization of task args for 'ansible.builtin.find' failed: Error while resolving value for 'age': Recursive loop detected in template: maximum recursion depth exceeded"}
+2026-01-23 15:44:24,807 p=45573 u=jimmy n=ansible INFO| 	to retry, use: --limit @/Users/jimmy/.ansible-retry/backup.retry
+
+2026-01-23 15:44:24,807 p=45573 u=jimmy n=ansible INFO| PLAY RECAP *********************************************************************
+2026-01-23 15:44:24,807 p=45573 u=jimmy n=ansible INFO| web01                      : ok=3    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2026-01-23 15:44:44,711 p=46677 u=jimmy n=ansible INFO| PLAY [Backup des serveurs] *****************************************************
+2026-01-23 15:44:44,716 p=46677 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 15:44:45,739 p=46677 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:44:45,742 p=46677 u=jimmy n=ansible INFO| TASK [Créer le répertoire de backup] *******************************************
+2026-01-23 15:44:46,316 p=46677 u=jimmy n=ansible WARNING| [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+
+2026-01-23 15:44:46,316 p=46677 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:9:18
+
+7   vars:
+8     backup_dir: "/backup"
+9     backup_date: "{{ ansible_date_time.date }}"
+                   ^ column 18
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-23 15:44:46,316 p=46677 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:44:46,318 p=46677 u=jimmy n=ansible INFO| TASK [Backup configuration Nginx] **********************************************
+2026-01-23 15:44:46,805 p=46677 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:44:46,808 p=46677 u=jimmy n=ansible INFO| TASK [Backup logs application] *************************************************
+2026-01-23 15:44:46,816 p=46677 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-23 15:44:46,818 p=46677 u=jimmy n=ansible INFO| TASK [Nettoyer les anciens backups] ********************************************
+2026-01-23 15:44:47,349 p=46677 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 15:44:47,352 p=46677 u=jimmy n=ansible INFO| TASK [Supprimer les backups expirés] *******************************************
+2026-01-23 15:44:47,360 p=46677 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-23 15:44:47,363 p=46677 u=jimmy n=ansible INFO| TASK [Résumé des backups] ******************************************************
+2026-01-23 15:44:47,383 p=46677 u=jimmy n=ansible INFO| ok: [web01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-23"
+}
+2026-01-23 15:44:47,383 p=46677 u=jimmy n=ansible INFO| PLAY RECAP *********************************************************************
+2026-01-23 15:44:47,383 p=46677 u=jimmy n=ansible INFO| web01                      : ok=5    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2026-01-23 16:51:20,206 p=49292 u=jimmy n=ansible WARNING| [WARNING]: Unable to parse /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/inventories/staging/inventory.yml as an inventory source
+
+2026-01-23 16:51:20,207 p=49292 u=jimmy n=ansible WARNING| [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2026-01-23 16:51:20,210 p=49292 u=jimmy n=ansible WARNING| [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+2026-01-23 16:51:20,408 p=49292 u=jimmy n=ansible INFO| PLAY [Configuration commune de tous les serveurs] ******************************
+2026-01-23 16:51:20,408 p=49292 u=jimmy n=ansible INFO| skipping: no hosts matched
+2026-01-23 16:51:20,408 p=49292 u=jimmy n=ansible WARNING| [WARNING]: Could not match supplied host pattern, ignoring: webservers
+
+2026-01-23 16:51:20,409 p=49292 u=jimmy n=ansible INFO| PLAY [Configuration des serveurs web] ******************************************
+2026-01-23 16:51:20,409 p=49292 u=jimmy n=ansible INFO| skipping: no hosts matched
+2026-01-23 16:51:20,409 p=49292 u=jimmy n=ansible WARNING| [WARNING]: Could not match supplied host pattern, ignoring: appservers
+
+2026-01-23 16:51:20,410 p=49292 u=jimmy n=ansible INFO| PLAY [Déploiement de l'application] ********************************************
+2026-01-23 16:51:20,410 p=49292 u=jimmy n=ansible INFO| skipping: no hosts matched
+2026-01-23 16:51:20,410 p=49292 u=jimmy n=ansible WARNING| [WARNING]: Could not match supplied host pattern, ignoring: monitoring
+
+2026-01-23 16:51:20,410 p=49292 u=jimmy n=ansible INFO| PLAY [Configuration du monitoring] *********************************************
+2026-01-23 16:51:20,410 p=49292 u=jimmy n=ansible INFO| skipping: no hosts matched
+2026-01-23 16:51:20,411 p=49292 u=jimmy n=ansible INFO| PLAY [Vérifications post-déploiement] ******************************************
+2026-01-23 16:51:20,411 p=49292 u=jimmy n=ansible INFO| skipping: no hosts matched
+2026-01-23 16:51:20,411 p=49292 u=jimmy n=ansible INFO| PLAY RECAP *********************************************************************
+2026-01-23 16:52:04,059 p=51470 u=jimmy n=ansible INFO| PLAY [Configuration commune de tous les serveurs] ******************************
+2026-01-23 16:52:04,067 p=51470 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 16:52:05,386 p=51470 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-23 16:52:05,469 p=51470 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-23 16:52:05,471 p=51470 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:52:05,483 p=51470 u=jimmy n=ansible INFO| TASK [common : Mettre à jour le cache APT] *************************************
+2026-01-23 16:52:07,254 p=51470 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:52:11,626 p=51470 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-23 16:52:11,735 p=51470 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-23 16:52:11,739 p=51470 u=jimmy n=ansible INFO| TASK [common : Installer les packages communs] *********************************
+2026-01-23 16:52:23,632 p=51470 u=jimmy n=ansible INFO| changed: [monitor01]
+2026-01-23 16:52:23,634 p=51470 u=jimmy n=ansible INFO| changed: [web01]
+2026-01-23 16:52:23,636 p=51470 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-23 16:52:23,639 p=51470 u=jimmy n=ansible INFO| TASK [common : Configurer le timezone] *****************************************
+2026-01-23 16:52:23,662 p=51470 u=jimmy n=ansible WARNING| [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+
+2026-01-23 16:52:23,663 p=51470 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/roles/common/tasks/main.yml:17:9
+
+15   timezone:
+16     name: "{{ timezone }}"
+17   when: ansible_service_mgr == "systemd"
+           ^ column 9
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-23 16:52:23,664 p=51470 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-23 16:52:23,664 p=51470 u=jimmy n=ansible INFO| skipping: [app01]
+2026-01-23 16:52:23,669 p=51470 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-23 16:52:23,672 p=51470 u=jimmy n=ansible INFO| TASK [common : Créer les répertoires de logs] **********************************
+2026-01-23 16:52:24,399 p=51470 u=jimmy n=ansible INFO| changed: [web01]
+2026-01-23 16:52:24,400 p=51470 u=jimmy n=ansible INFO| changed: [monitor01]
+2026-01-23 16:52:24,400 p=51470 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-23 16:52:24,408 p=51470 u=jimmy n=ansible INFO| TASK [common : Configurer la rotation des logs] ********************************
+2026-01-23 16:52:25,426 p=51470 u=jimmy n=ansible INFO| changed: [monitor01]
+2026-01-23 16:52:25,428 p=51470 u=jimmy n=ansible INFO| changed: [web01]
+2026-01-23 16:52:25,436 p=51470 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-23 16:52:25,440 p=51470 u=jimmy n=ansible INFO| TASK [common : Désactiver les services inutiles] *******************************
+2026-01-23 16:52:26,008 p=51470 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Module failed: Could not find the requested service snapd: host
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/roles/common/tasks/main.yml:31:3
+
+29     mode: '0644'
+30
+31 - name: Désactiver les services inutiles
+     ^ column 3
+
+
+2026-01-23 16:52:26,008 p=51470 u=jimmy n=ansible INFO| failed: [web01] (item=snapd) => {"ansible_loop_var": "item", "changed": false, "item": "snapd", "msg": "Could not find the requested service snapd: host"}
+2026-01-23 16:52:26,009 p=51470 u=jimmy n=ansible INFO| ...ignoring
+2026-01-23 16:52:26,020 p=51470 u=jimmy n=ansible INFO| failed: [monitor01] (item=snapd) => {"ansible_loop_var": "item", "changed": false, "item": "snapd", "msg": "Could not find the requested service snapd: host"}
+2026-01-23 16:52:26,020 p=51470 u=jimmy n=ansible INFO| failed: [app01] (item=snapd) => {"ansible_loop_var": "item", "changed": false, "item": "snapd", "msg": "Could not find the requested service snapd: host"}
+2026-01-23 16:52:26,021 p=51470 u=jimmy n=ansible INFO| ...ignoring
+2026-01-23 16:52:26,022 p=51470 u=jimmy n=ansible INFO| ...ignoring
+2026-01-23 16:52:26,028 p=51470 u=jimmy n=ansible INFO| TASK [common : Afficher les informations système] ******************************
+2026-01-23 16:52:26,060 p=51470 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/roles/common/tasks/main.yml:42:10
+
+40 - name: Afficher les informations système
+41   debug:
+42     msg: |
+            ^ column 10
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-23 16:52:26,060 p=51470 u=jimmy n=ansible INFO| ok: [app01] => {
+    "msg": "📊 Serveur: app01\n💻 OS: Ubuntu 22.04\n🔧 CPU: 3 vCPUs\n💾 RAM: 3978MB\n🌐 IP: N/A\n"
+}
+2026-01-23 16:52:26,060 p=51470 u=jimmy n=ansible INFO| ok: [web01] => {
+    "msg": "📊 Serveur: web01\n💻 OS: Ubuntu 22.04\n🔧 CPU: 3 vCPUs\n💾 RAM: 3978MB\n🌐 IP: 192.168.147.7\n"
+}
+2026-01-23 16:52:26,062 p=51470 u=jimmy n=ansible INFO| ok: [monitor01] => {
+    "msg": "📊 Serveur: monitor01\n💻 OS: Ubuntu 22.04\n🔧 CPU: 3 vCPUs\n💾 RAM: 3978MB\n🌐 IP: N/A\n"
+}
+2026-01-23 16:52:26,068 p=51470 u=jimmy n=ansible INFO| PLAY [Configuration des serveurs web] ******************************************
+2026-01-23 16:52:26,071 p=51470 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 16:52:26,667 p=51470 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:52:26,671 p=51470 u=jimmy n=ansible INFO| PLAY [Déploiement de l'application] ********************************************
+2026-01-23 16:52:26,674 p=51470 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 16:52:27,483 p=51470 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-23 16:52:27,488 p=51470 u=jimmy n=ansible INFO| PLAY [Configuration du monitoring] *********************************************
+2026-01-23 16:52:27,490 p=51470 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 16:52:28,157 p=51470 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-23 16:52:28,161 p=51470 u=jimmy n=ansible INFO| PLAY [Vérifications post-déploiement] ******************************************
+2026-01-23 16:52:28,164 p=51470 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 16:52:28,917 p=51470 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-23 16:52:28,995 p=51470 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-23 16:52:29,019 p=51470 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:52:29,022 p=51470 u=jimmy n=ansible INFO| TASK [Afficher le résumé du déploiement] ***************************************
+2026-01-23 16:52:29,045 p=51470 u=jimmy n=ansible INFO| ok: [web01] => {
+    "msg": "✅ Déploiement terminé avec succès !\n🌍 Environnement: staging\n🏷️ Version: latest\n📊 Serveurs: 3\n"
+}
+2026-01-23 16:52:29,046 p=51470 u=jimmy n=ansible INFO| PLAY RECAP *********************************************************************
+2026-01-23 16:52:29,046 p=51470 u=jimmy n=ansible INFO| app01                      : ok=9    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=1   
+2026-01-23 16:52:29,046 p=51470 u=jimmy n=ansible INFO| monitor01                  : ok=9    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=1   
+2026-01-23 16:52:29,046 p=51470 u=jimmy n=ansible INFO| web01                      : ok=10   changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=1   
+2026-01-23 16:52:43,121 p=53664 u=jimmy n=ansible INFO| PLAY [Backup des serveurs] *****************************************************
+2026-01-23 16:52:43,126 p=53664 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 16:52:44,394 p=53664 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-23 16:52:44,401 p=53664 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-23 16:52:44,424 p=53664 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:52:44,426 p=53664 u=jimmy n=ansible INFO| TASK [Créer le répertoire de backup] *******************************************
+2026-01-23 16:52:44,932 p=53664 u=jimmy n=ansible WARNING| [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+
+2026-01-23 16:52:44,933 p=53664 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:9:18
+
+7   vars:
+8     backup_dir: "/backup"
+9     backup_date: "{{ ansible_date_time.date }}"
+                   ^ column 18
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-23 16:52:44,933 p=53664 u=jimmy n=ansible INFO| changed: [monitor01]
+2026-01-23 16:52:44,944 p=53664 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-23 16:52:44,947 p=53664 u=jimmy n=ansible INFO| changed: [web01]
+2026-01-23 16:52:44,950 p=53664 u=jimmy n=ansible INFO| TASK [Backup configuration Nginx] **********************************************
+2026-01-23 16:52:44,967 p=53664 u=jimmy n=ansible INFO| skipping: [app01]
+2026-01-23 16:52:44,971 p=53664 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-23 16:52:45,386 p=53664 u=jimmy n=ansible INFO| changed: [web01]
+2026-01-23 16:52:45,388 p=53664 u=jimmy n=ansible INFO| TASK [Backup logs application] *************************************************
+2026-01-23 16:52:45,404 p=53664 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-23 16:52:45,412 p=53664 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Finalization of task args for 'community.general.archive' failed: Error while resolving value for 'path': 'log_path' is undefined
+
+Task failed.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:25:7
+
+23       when: inventory_hostname in groups['webservers']
+24     
+25     - name: Backup logs application
+         ^ column 7
+
+<<< caused by >>>
+
+Finalization of task args for 'community.general.archive' failed.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:26:7
+
+24     
+25     - name: Backup logs application
+26       archive:
+         ^ column 7
+
+<<< caused by >>>
+
+Error while resolving value for 'path': 'log_path' is undefined
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:27:15
+
+25     - name: Backup logs application
+26       archive:
+27         path: "{{ log_path }}"
+                 ^ column 15
+
+
+2026-01-23 16:52:45,412 p=53664 u=jimmy n=ansible INFO| fatal: [app01]: FAILED! => {"changed": false, "msg": "Task failed: Finalization of task args for 'community.general.archive' failed: Error while resolving value for 'path': 'log_path' is undefined"}
+2026-01-23 16:52:45,412 p=53664 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-23 16:52:45,415 p=53664 u=jimmy n=ansible INFO| TASK [Nettoyer les anciens backups] ********************************************
+2026-01-23 16:52:45,891 p=53664 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:52:45,891 p=53664 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-23 16:52:45,894 p=53664 u=jimmy n=ansible INFO| TASK [Supprimer les backups expirés] *******************************************
+2026-01-23 16:52:45,904 p=53664 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-23 16:52:45,908 p=53664 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-23 16:52:45,912 p=53664 u=jimmy n=ansible INFO| TASK [Résumé des backups] ******************************************************
+2026-01-23 16:52:45,945 p=53664 u=jimmy n=ansible INFO| ok: [web01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-23"
+}
+2026-01-23 16:52:45,948 p=53664 u=jimmy n=ansible INFO| ok: [monitor01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-23"
+}
+2026-01-23 16:52:45,949 p=53664 u=jimmy n=ansible INFO| 	to retry, use: --limit @/Users/jimmy/.ansible-retry/backup.retry
+
+2026-01-23 16:52:45,949 p=53664 u=jimmy n=ansible INFO| PLAY RECAP *********************************************************************
+2026-01-23 16:52:45,950 p=53664 u=jimmy n=ansible INFO| app01                      : ok=2    changed=1    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2026-01-23 16:52:45,950 p=53664 u=jimmy n=ansible INFO| monitor01                  : ok=4    changed=1    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+2026-01-23 16:52:45,950 p=53664 u=jimmy n=ansible INFO| web01                      : ok=5    changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2026-01-23 16:53:20,010 p=55570 u=jimmy n=ansible INFO| app01 | SUCCESS => {
+    "log_path": "/var/log/app"
+}
+2026-01-23 16:53:32,561 p=56171 u=jimmy n=ansible INFO| app01 | SUCCESS => {
+    "changed": false,
+    "stat": {
+        "atime": 1769183544.3581433,
+        "attr_flags": "",
+        "attributes": [],
+        "block_size": 4096,
+        "blocks": 0,
+        "charset": "unknown",
+        "ctime": 1769183544.3581433,
+        "dev": 1048607,
+        "device_type": 0,
+        "executable": true,
+        "exists": true,
+        "gid": 0,
+        "gr_name": "root",
+        "inode": 19489970,
+        "isblk": false,
+        "ischr": false,
+        "isdir": true,
+        "isfifo": false,
+        "isgid": false,
+        "islnk": false,
+        "isreg": false,
+        "issock": false,
+        "isuid": false,
+        "mimetype": "unknown",
+        "mode": "0755",
+        "mtime": 1769183544.3581433,
+        "nlink": 1,
+        "path": "/var/log/app",
+        "pw_name": "root",
+        "readable": true,
+        "rgrp": true,
+        "roth": true,
+        "rusr": true,
+        "size": 0,
+        "uid": 0,
+        "version": null,
+        "wgrp": false,
+        "woth": false,
+        "writeable": true,
+        "wusr": true,
+        "xgrp": true,
+        "xoth": true,
+        "xusr": true
+    }
+}
+2026-01-23 16:53:48,489 p=57012 u=jimmy n=ansible INFO| Using /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/ansible.cfg as config file
+2026-01-23 16:53:48,754 p=57012 u=jimmy n=ansible INFO| PLAY [Backup des serveurs] *****************************************************
+2026-01-23 16:53:48,767 p=57012 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 16:53:49,837 p=57012 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-23 16:53:49,840 p=57012 u=jimmy n=ansible INFO| TASK [Créer le répertoire de backup] *******************************************
+2026-01-23 16:53:50,296 p=57012 u=jimmy n=ansible WARNING| [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+
+2026-01-23 16:53:50,296 p=57012 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:9:18
+
+7   vars:
+8     backup_dir: "/backup"
+9     backup_date: "{{ ansible_date_time.date }}"
+                   ^ column 18
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-23 16:53:50,296 p=57012 u=jimmy n=ansible INFO| ok: [app01] => {"changed": false, "gid": 0, "group": "root", "mode": "0750", "owner": "root", "path": "/backup/2026-01-23", "size": 0, "state": "directory", "uid": 0}
+2026-01-23 16:53:50,299 p=57012 u=jimmy n=ansible INFO| TASK [Backup configuration Nginx] **********************************************
+2026-01-23 16:53:50,308 p=57012 u=jimmy n=ansible INFO| skipping: [app01] => {"changed": false, "false_condition": "inventory_hostname in groups['webservers']", "skip_reason": "Conditional result was False"}
+2026-01-23 16:53:50,310 p=57012 u=jimmy n=ansible INFO| TASK [Backup logs application] *************************************************
+2026-01-23 16:53:50,323 p=57012 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Finalization of task args for 'community.general.archive' failed: Error while resolving value for 'path': 'log_path' is undefined
+
+Task failed.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:25:7
+
+23       when: inventory_hostname in groups['webservers']
+24     
+25     - name: Backup logs application
+         ^ column 7
+
+<<< caused by >>>
+
+Finalization of task args for 'community.general.archive' failed.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:26:7
+
+24     
+25     - name: Backup logs application
+26       archive:
+         ^ column 7
+
+<<< caused by >>>
+
+Error while resolving value for 'path': 'log_path' is undefined
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:27:15
+
+25     - name: Backup logs application
+26       archive:
+27         path: "{{ log_path }}"
+                 ^ column 15
+
+
+2026-01-23 16:53:50,323 p=57012 u=jimmy n=ansible INFO| fatal: [app01]: FAILED! => {"changed": false, "msg": "Task failed: Finalization of task args for 'community.general.archive' failed: Error while resolving value for 'path': 'log_path' is undefined"}
+2026-01-23 16:53:50,324 p=57012 u=jimmy n=ansible INFO| 	to retry, use: --limit @/Users/jimmy/.ansible-retry/backup.retry
+
+2026-01-23 16:53:50,324 p=57012 u=jimmy n=ansible INFO| PLAY RECAP *********************************************************************
+2026-01-23 16:53:50,324 p=57012 u=jimmy n=ansible INFO| app01                      : ok=2    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2026-01-23 16:54:31,582 p=59144 u=jimmy n=ansible INFO| PLAY [Backup des serveurs] *****************************************************
+2026-01-23 16:54:31,587 p=59144 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 16:54:32,781 p=59144 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-23 16:54:32,900 p=59144 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-23 16:54:32,913 p=59144 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:54:32,916 p=59144 u=jimmy n=ansible INFO| TASK [Créer le répertoire de backup] *******************************************
+2026-01-23 16:54:33,506 p=59144 u=jimmy n=ansible WARNING| [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+
+2026-01-23 16:54:33,506 p=59144 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:9:18
+
+7   vars:
+8     backup_dir: "/backup"
+9     backup_date: "{{ ansible_date_time.date }}"
+                   ^ column 18
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-23 16:54:33,507 p=59144 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-23 16:54:33,509 p=59144 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:54:33,513 p=59144 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-23 16:54:33,516 p=59144 u=jimmy n=ansible INFO| TASK [Backup configuration Nginx] **********************************************
+2026-01-23 16:54:33,532 p=59144 u=jimmy n=ansible INFO| skipping: [app01]
+2026-01-23 16:54:33,536 p=59144 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-23 16:54:33,957 p=59144 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:54:33,959 p=59144 u=jimmy n=ansible INFO| TASK [Backup logs application] *************************************************
+2026-01-23 16:54:33,974 p=59144 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-23 16:54:33,981 p=59144 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Finalization of task args for 'community.general.archive' failed: Error while resolving value for 'path': 'app_log_path' is undefined
+
+Task failed.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:25:7
+
+23       when: inventory_hostname in groups['webservers']
+24     
+25     - name: Backup logs application
+         ^ column 7
+
+<<< caused by >>>
+
+Finalization of task args for 'community.general.archive' failed.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:26:7
+
+24     
+25     - name: Backup logs application
+26       archive:
+         ^ column 7
+
+<<< caused by >>>
+
+Error while resolving value for 'path': 'app_log_path' is undefined
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:27:15
+
+25     - name: Backup logs application
+26       archive:
+27         path: "{{ app_log_path }}"
+                 ^ column 15
+
+
+2026-01-23 16:54:33,981 p=59144 u=jimmy n=ansible INFO| fatal: [app01]: FAILED! => {"changed": false, "msg": "Task failed: Finalization of task args for 'community.general.archive' failed: Error while resolving value for 'path': 'app_log_path' is undefined"}
+2026-01-23 16:54:33,981 p=59144 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-23 16:54:33,983 p=59144 u=jimmy n=ansible INFO| TASK [Nettoyer les anciens backups] ********************************************
+2026-01-23 16:54:34,774 p=59144 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:54:34,780 p=59144 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-23 16:54:34,783 p=59144 u=jimmy n=ansible INFO| TASK [Supprimer les backups expirés] *******************************************
+2026-01-23 16:54:34,795 p=59144 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-23 16:54:34,798 p=59144 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-23 16:54:34,802 p=59144 u=jimmy n=ansible INFO| TASK [Résumé des backups] ******************************************************
+2026-01-23 16:54:34,846 p=59144 u=jimmy n=ansible INFO| ok: [web01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-23"
+}
+2026-01-23 16:54:34,848 p=59144 u=jimmy n=ansible INFO| ok: [monitor01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-23"
+}
+2026-01-23 16:54:34,849 p=59144 u=jimmy n=ansible INFO| 	to retry, use: --limit @/Users/jimmy/.ansible-retry/backup.retry
+
+2026-01-23 16:54:34,849 p=59144 u=jimmy n=ansible INFO| PLAY RECAP *********************************************************************
+2026-01-23 16:54:34,849 p=59144 u=jimmy n=ansible INFO| app01                      : ok=2    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2026-01-23 16:54:34,849 p=59144 u=jimmy n=ansible INFO| monitor01                  : ok=4    changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+2026-01-23 16:54:34,849 p=59144 u=jimmy n=ansible INFO| web01                      : ok=5    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2026-01-23 16:54:45,997 p=59968 u=jimmy n=ansible INFO| app01 | SUCCESS => {
+    "app_log_path": "/var/log/app"
+}
+2026-01-23 16:55:07,405 p=61037 u=jimmy n=ansible INFO| PLAY [Backup des serveurs] *****************************************************
+2026-01-23 16:55:07,410 p=61037 u=jimmy n=ansible INFO| TASK [Gathering Facts] *********************************************************
+2026-01-23 16:55:08,504 p=61037 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-23 16:55:08,517 p=61037 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-23 16:55:08,620 p=61037 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:55:08,623 p=61037 u=jimmy n=ansible INFO| TASK [Créer le répertoire de backup] *******************************************
+2026-01-23 16:55:09,160 p=61037 u=jimmy n=ansible WARNING| [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+
+2026-01-23 16:55:09,161 p=61037 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:9:18
+
+7   vars:
+8     backup_dir: "/backup"
+9     backup_date: "{{ ansible_date_time.date }}"
+                   ^ column 18
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-23 16:55:09,161 p=61037 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:55:09,161 p=61037 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-23 16:55:09,170 p=61037 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-23 16:55:09,172 p=61037 u=jimmy n=ansible INFO| TASK [Backup configuration Nginx] **********************************************
+2026-01-23 16:55:09,189 p=61037 u=jimmy n=ansible INFO| skipping: [app01]
+2026-01-23 16:55:09,193 p=61037 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-23 16:55:09,611 p=61037 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:55:09,613 p=61037 u=jimmy n=ansible INFO| TASK [Backup logs application] *************************************************
+2026-01-23 16:55:09,629 p=61037 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-23 16:55:09,637 p=61037 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-23 16:55:09,982 p=61037 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-23 16:55:09,985 p=61037 u=jimmy n=ansible INFO| TASK [Nettoyer les anciens backups] ********************************************
+2026-01-23 16:55:10,515 p=61037 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-23 16:55:10,518 p=61037 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-23 16:55:10,522 p=61037 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-23 16:55:10,525 p=61037 u=jimmy n=ansible INFO| TASK [Supprimer les backups expirés] *******************************************
+2026-01-23 16:55:10,540 p=61037 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-23 16:55:10,541 p=61037 u=jimmy n=ansible INFO| skipping: [app01]
+2026-01-23 16:55:10,545 p=61037 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-23 16:55:10,548 p=61037 u=jimmy n=ansible INFO| TASK [Résumé des backups] ******************************************************
+2026-01-23 16:55:10,582 p=61037 u=jimmy n=ansible INFO| ok: [web01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-23"
+}
+2026-01-23 16:55:10,586 p=61037 u=jimmy n=ansible INFO| ok: [app01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-23"
+}
+2026-01-23 16:55:10,591 p=61037 u=jimmy n=ansible INFO| ok: [monitor01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-23"
+}
+2026-01-23 16:55:10,592 p=61037 u=jimmy n=ansible INFO| PLAY RECAP *********************************************************************
+2026-01-23 16:55:10,592 p=61037 u=jimmy n=ansible INFO| app01                      : ok=5    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2026-01-23 16:55:10,592 p=61037 u=jimmy n=ansible INFO| monitor01                  : ok=4    changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+2026-01-23 16:55:10,592 p=61037 u=jimmy n=ansible INFO| web01                      : ok=5    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2026-01-26 19:14:50,424 p=26027 u=jimmy n=ansible INFO| PLAY [Déploiement application] ***************************************************************************************
+2026-01-26 19:14:50,431 p=26027 u=jimmy n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2026-01-26 19:14:51,697 p=26027 u=jimmy n=ansible WARNING| [WARNING]: Host 'app01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:14:51,697 p=26027 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:14:51,700 p=26027 u=jimmy n=ansible INFO| TASK [Vérifier la version à déployer] ********************************************************************************
+2026-01-26 19:14:51,718 p=26027 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Action failed: La version de l'application doit être définie
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/deploy.yml:8:7
+
+6   
+7   pre_tasks: # Tâches à exécuter AVANT les rôles
+8     - name: Vérifier la version à déployer # Validation de la version
+        ^ column 7
+
+
+2026-01-26 19:14:51,718 p=26027 u=jimmy n=ansible INFO| fatal: [app01]: FAILED! => {
+    "assertion": "app_version is defined",
+    "changed": false,
+    "evaluated_to": false,
+    "msg": "La version de l'application doit être définie"
+}
+2026-01-26 19:14:51,719 p=26027 u=jimmy n=ansible INFO| 	to retry, use: --limit @/Users/jimmy/.ansible-retry/deploy.retry
+
+2026-01-26 19:14:51,719 p=26027 u=jimmy n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2026-01-26 19:14:51,719 p=26027 u=jimmy n=ansible INFO| app01                      : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-01-26 19:16:48,677 p=27487 u=jimmy n=ansible INFO| PLAY [Déploiement application] ***************************************************************************************
+2026-01-26 19:16:48,684 p=27487 u=jimmy n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2026-01-26 19:16:49,995 p=27487 u=jimmy n=ansible WARNING| [WARNING]: Host 'app01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:16:49,995 p=27487 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:16:49,998 p=27487 u=jimmy n=ansible INFO| TASK [Vérifier la version à déployer] ********************************************************************************
+2026-01-26 19:16:50,015 p=27487 u=jimmy n=ansible INFO| ok: [app01] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+2026-01-26 19:16:50,017 p=27487 u=jimmy n=ansible INFO| TASK [Afficher les informations de déploiement] **********************************************************************
+2026-01-26 19:16:50,043 p=27487 u=jimmy n=ansible INFO| ok: [app01] => {
+    "msg": "🚀 Déploiement de MonApp\n🏷️ Version: latest\n🌍 Environnement: staging\n📍 Serveurs: app01\n"
+}
+2026-01-26 19:16:50,047 p=27487 u=jimmy n=ansible INFO| TASK [Vérifier que l'application répond] *****************************************************************************
+2026-01-26 19:16:50,512 p=27487 u=jimmy n=ansible INFO| FAILED - RETRYING: [app01]: Vérifier que l'application répond (5 retries left).
+2026-01-26 19:16:53,894 p=27487 u=jimmy n=ansible INFO| FAILED - RETRYING: [app01]: Vérifier que l'application répond (4 retries left).
+2026-01-26 19:16:57,235 p=27487 u=jimmy n=ansible INFO| FAILED - RETRYING: [app01]: Vérifier que l'application répond (3 retries left).
+2026-01-26 19:17:00,581 p=27487 u=jimmy n=ansible INFO| FAILED - RETRYING: [app01]: Vérifier que l'application répond (2 retries left).
+2026-01-26 19:17:03,963 p=27487 u=jimmy n=ansible INFO| FAILED - RETRYING: [app01]: Vérifier que l'application répond (1 retries left).
+2026-01-26 19:17:07,283 p=27487 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Module failed: Status code was -1 and not [200]: Request failed: <urlopen error [Errno 111] Connection refused>
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/deploy.yml:27:7
+
+25   
+26   post_tasks: # Tâches à exécuter APRÈS les rôles
+27     - name: Vérifier que l'application répond # Test de santé de l'application
+         ^ column 7
+
+
+2026-01-26 19:17:07,284 p=27487 u=jimmy n=ansible INFO| fatal: [app01]: FAILED! => {"attempts": 5, "changed": false, "elapsed": 0, "msg": "Status code was -1 and not [200]: Request failed: <urlopen error [Errno 111] Connection refused>", "redirected": false, "status": -1, "url": "http://localhost:8080/health"}
+2026-01-26 19:17:07,286 p=27487 u=jimmy n=ansible INFO| 	to retry, use: --limit @/Users/jimmy/.ansible-retry/deploy.retry
+
+2026-01-26 19:17:07,286 p=27487 u=jimmy n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2026-01-26 19:17:07,286 p=27487 u=jimmy n=ansible INFO| app01                      : ok=3    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-01-26 19:18:59,517 p=29364 u=jimmy n=ansible INFO| PLAY [Déploiement application] ***************************************************************************************
+2026-01-26 19:18:59,524 p=29364 u=jimmy n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2026-01-26 19:19:00,910 p=29364 u=jimmy n=ansible WARNING| [WARNING]: Host 'app01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:19:00,911 p=29364 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:19:00,913 p=29364 u=jimmy n=ansible INFO| TASK [Vérifier la version à déployer] ********************************************************************************
+2026-01-26 19:19:00,931 p=29364 u=jimmy n=ansible INFO| ok: [app01] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+2026-01-26 19:19:00,934 p=29364 u=jimmy n=ansible INFO| TASK [Afficher les informations de déploiement] **********************************************************************
+2026-01-26 19:19:00,959 p=29364 u=jimmy n=ansible INFO| ok: [app01] => {
+    "msg": "🚀 Déploiement de MonApp\n🏷️ Version: latest\n🌍 Environnement: staging\n📍 Serveurs: app01\n"
+}
+2026-01-26 19:19:00,961 p=29364 u=jimmy n=ansible INFO| TASK [app : Installer Python3 et pip] ********************************************************************************
+2026-01-26 19:19:40,829 p=29364 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-26 19:19:40,835 p=29364 u=jimmy n=ansible INFO| TASK [app : Créer l'utilisateur de l'application] ********************************************************************
+2026-01-26 19:19:41,437 p=29364 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-26 19:19:41,439 p=29364 u=jimmy n=ansible INFO| TASK [app : Créer le répertoire de l'application] ********************************************************************
+2026-01-26 19:19:41,849 p=29364 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-26 19:19:41,852 p=29364 u=jimmy n=ansible INFO| TASK [app : Déployer l'application (serveur HTTP simple)] ************************************************************
+2026-01-26 19:19:41,993 p=29364 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Syntax error in template: expected token 'end of print statement', got ':'
+
+Task failed.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/roles/app/tasks/main.yml:32:3
+
+30   tags: ['config']
+31
+32 - name: Déployer l'application (serveur HTTP simple)
+     ^ column 3
+
+<<< caused by >>>
+
+Syntax error in template: expected token 'end of print statement', got ':'
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/roles/app/templates/app.py.j2
+
+
+2026-01-26 19:19:41,994 p=29364 u=jimmy n=ansible INFO| fatal: [app01]: FAILED! => {"changed": false, "msg": "Task failed: Syntax error in template: expected token 'end of print statement', got ':'"}
+2026-01-26 19:19:41,994 p=29364 u=jimmy n=ansible INFO| 	to retry, use: --limit @/Users/jimmy/.ansible-retry/deploy.retry
+
+2026-01-26 19:19:41,994 p=29364 u=jimmy n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2026-01-26 19:19:41,995 p=29364 u=jimmy n=ansible INFO| app01                      : ok=6    changed=3    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-01-26 19:22:23,799 p=32053 u=jimmy n=ansible INFO| PLAY [Déploiement application] ***************************************************************************************
+2026-01-26 19:22:23,807 p=32053 u=jimmy n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2026-01-26 19:22:25,008 p=32053 u=jimmy n=ansible WARNING| [WARNING]: Host 'app01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:22:25,009 p=32053 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:22:25,011 p=32053 u=jimmy n=ansible INFO| TASK [Vérifier la version à déployer] ********************************************************************************
+2026-01-26 19:22:25,029 p=32053 u=jimmy n=ansible INFO| ok: [app01] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+2026-01-26 19:22:25,031 p=32053 u=jimmy n=ansible INFO| TASK [Afficher les informations de déploiement] **********************************************************************
+2026-01-26 19:22:25,055 p=32053 u=jimmy n=ansible INFO| ok: [app01] => {
+    "msg": "🚀 Déploiement de MonApp\n🏷️ Version: latest\n🌍 Environnement: staging\n📍 Serveurs: app01\n"
+}
+2026-01-26 19:22:25,057 p=32053 u=jimmy n=ansible INFO| TASK [app : Installer Python3 et pip] ********************************************************************************
+2026-01-26 19:22:29,295 p=32053 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:22:29,298 p=32053 u=jimmy n=ansible INFO| TASK [app : Créer l'utilisateur de l'application] ********************************************************************
+2026-01-26 19:22:30,096 p=32053 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:22:30,099 p=32053 u=jimmy n=ansible INFO| TASK [app : Créer le répertoire de l'application] ********************************************************************
+2026-01-26 19:22:30,513 p=32053 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:22:30,516 p=32053 u=jimmy n=ansible INFO| TASK [app : Déployer l'application (serveur HTTP simple)] ************************************************************
+2026-01-26 19:22:31,249 p=32053 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-26 19:22:31,251 p=32053 u=jimmy n=ansible INFO| TASK [app : Créer le fichier de service systemd] *********************************************************************
+2026-01-26 19:22:31,824 p=32053 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-26 19:22:31,827 p=32053 u=jimmy n=ansible INFO| TASK [app : Démarrer l'application] **********************************************************************************
+2026-01-26 19:22:32,344 p=32053 u=jimmy n=ansible ERROR| [ERROR]: Task failed: Module failed: non-zero return code
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/roles/app/tasks/main.yml:53:3
+
+51   tags: ['config']
+52
+53 - name: Démarrer l'application
+     ^ column 3
+
+
+2026-01-26 19:22:32,344 p=32053 u=jimmy n=ansible INFO| fatal: [app01]: FAILED! => {"changed": true, "cmd": "pkill -f \"python3 /opt/app/app.py\" || true\nnohup python3 /opt/app/app.py > /opt/app/app.log 2>&1 &\n", "delta": "0:00:00.004253", "end": "2026-01-26 18:22:32.318393", "msg": "non-zero return code", "rc": -15, "start": "2026-01-26 18:22:32.314140", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+2026-01-26 19:22:32,345 p=32053 u=jimmy n=ansible INFO| 	to retry, use: --limit @/Users/jimmy/.ansible-retry/deploy.retry
+
+2026-01-26 19:22:32,345 p=32053 u=jimmy n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2026-01-26 19:22:32,345 p=32053 u=jimmy n=ansible INFO| app01                      : ok=8    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2026-01-26 19:24:35,158 p=33602 u=jimmy n=ansible INFO| PLAY [Déploiement application] ***************************************************************************************
+2026-01-26 19:24:35,165 p=33602 u=jimmy n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2026-01-26 19:24:36,145 p=33602 u=jimmy n=ansible WARNING| [WARNING]: Host 'app01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:24:36,145 p=33602 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:24:36,147 p=33602 u=jimmy n=ansible INFO| TASK [Vérifier la version à déployer] ********************************************************************************
+2026-01-26 19:24:36,165 p=33602 u=jimmy n=ansible INFO| ok: [app01] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+2026-01-26 19:24:36,168 p=33602 u=jimmy n=ansible INFO| TASK [Afficher les informations de déploiement] **********************************************************************
+2026-01-26 19:24:36,193 p=33602 u=jimmy n=ansible INFO| ok: [app01] => {
+    "msg": "🚀 Déploiement de MonApp\n🏷️ Version: latest\n🌍 Environnement: staging\n📍 Serveurs: app01\n"
+}
+2026-01-26 19:24:36,195 p=33602 u=jimmy n=ansible INFO| TASK [app : Installer Python3 et pip] ********************************************************************************
+2026-01-26 19:24:40,201 p=33602 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:24:40,204 p=33602 u=jimmy n=ansible INFO| TASK [app : Créer l'utilisateur de l'application] ********************************************************************
+2026-01-26 19:24:40,672 p=33602 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-26 19:24:40,674 p=33602 u=jimmy n=ansible INFO| TASK [app : Créer le répertoire de l'application] ********************************************************************
+2026-01-26 19:24:41,079 p=33602 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:24:41,082 p=33602 u=jimmy n=ansible INFO| TASK [app : Déployer l'application (serveur HTTP simple)] ************************************************************
+2026-01-26 19:24:41,668 p=33602 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:24:41,670 p=33602 u=jimmy n=ansible INFO| TASK [app : Créer le fichier de service systemd] *********************************************************************
+2026-01-26 19:24:42,176 p=33602 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:24:42,180 p=33602 u=jimmy n=ansible INFO| TASK [app : Arrêter l'application si elle tourne déjà] ***************************************************************
+2026-01-26 19:24:42,578 p=33602 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-26 19:24:42,580 p=33602 u=jimmy n=ansible INFO| TASK [app : Démarrer l'application en arrière-plan] ******************************************************************
+2026-01-26 19:24:42,990 p=33602 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-26 19:24:42,992 p=33602 u=jimmy n=ansible INFO| TASK [app : Attendre que l'application démarre] **********************************************************************
+2026-01-26 19:24:45,423 p=33602 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:24:45,428 p=33602 u=jimmy n=ansible INFO| TASK [Vérifier que l'application répond] *****************************************************************************
+2026-01-26 19:24:45,855 p=33602 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:24:45,857 p=33602 u=jimmy n=ansible INFO| TASK [Confirmer le déploiement] **************************************************************************************
+2026-01-26 19:24:45,871 p=33602 u=jimmy n=ansible INFO| ok: [app01] => {
+    "msg": "✅ Application déployée et fonctionnelle sur app01"
+}
+2026-01-26 19:24:45,872 p=33602 u=jimmy n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2026-01-26 19:24:45,872 p=33602 u=jimmy n=ansible INFO| app01                      : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2026-01-26 19:40:16,018 p=45805 u=jimmy n=ansible INFO| PLAY [Déploiement application] ***************************************************************************************
+2026-01-26 19:40:16,027 p=45805 u=jimmy n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2026-01-26 19:40:18,859 p=45805 u=jimmy n=ansible WARNING| [WARNING]: Host 'app01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:40:18,860 p=45805 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:40:18,891 p=45805 u=jimmy n=ansible WARNING| [WARNING]: Host 'app02' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:40:18,891 p=45805 u=jimmy n=ansible INFO| ok: [app02]
+2026-01-26 19:40:18,896 p=45805 u=jimmy n=ansible INFO| TASK [Vérifier la version à déployer] ********************************************************************************
+2026-01-26 19:40:19,022 p=45805 u=jimmy n=ansible INFO| ok: [app02] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+2026-01-26 19:40:19,022 p=45805 u=jimmy n=ansible INFO| ok: [app01] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+2026-01-26 19:40:19,025 p=45805 u=jimmy n=ansible INFO| TASK [Afficher les informations de déploiement] **********************************************************************
+2026-01-26 19:40:19,092 p=45805 u=jimmy n=ansible INFO| ok: [app02] => {
+    "msg": "🚀 Déploiement de MonApp\n🏷️ Version: v1.2.0\n🌍 Environnement: production\n📍 Serveurs: app01, app02\n"
+}
+2026-01-26 19:40:19,092 p=45805 u=jimmy n=ansible INFO| ok: [app01] => {
+    "msg": "🚀 Déploiement de MonApp\n🏷️ Version: v1.2.0\n🌍 Environnement: production\n📍 Serveurs: app01, app02\n"
+}
+2026-01-26 19:40:19,095 p=45805 u=jimmy n=ansible INFO| TASK [app : Installer Python3 et pip] ********************************************************************************
+2026-01-26 19:40:24,037 p=45805 u=jimmy n=ansible ERROR| [ERROR]: User interrupted execution
+
+2026-01-26 19:40:28,915 p=46258 u=jimmy n=ansible INFO| PLAY [Backup des serveurs] *******************************************************************************************
+2026-01-26 19:40:28,923 p=46258 u=jimmy n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2026-01-26 19:40:32,629 p=46258 u=jimmy n=ansible WARNING| [WARNING]: Host 'monitor01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:40:32,631 p=46258 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-26 19:40:32,634 p=46258 u=jimmy n=ansible WARNING| [WARNING]: Host 'web02' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:40:32,634 p=46258 u=jimmy n=ansible INFO| ok: [web02]
+2026-01-26 19:40:32,823 p=46258 u=jimmy n=ansible WARNING| [WARNING]: Host 'web01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:40:32,823 p=46258 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-26 19:40:32,841 p=46258 u=jimmy n=ansible WARNING| [WARNING]: Host 'app01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:40:32,842 p=46258 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:40:33,186 p=46258 u=jimmy n=ansible WARNING| [WARNING]: Host 'db01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:40:33,186 p=46258 u=jimmy n=ansible INFO| ok: [db01]
+2026-01-26 19:40:33,467 p=46258 u=jimmy n=ansible WARNING| [WARNING]: Host 'app02' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:40:33,467 p=46258 u=jimmy n=ansible INFO| ok: [app02]
+2026-01-26 19:40:33,475 p=46258 u=jimmy n=ansible INFO| TASK [Créer le répertoire de backup] *********************************************************************************
+2026-01-26 19:40:36,696 p=46258 u=jimmy n=ansible WARNING| [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+
+2026-01-26 19:40:36,697 p=46258 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:9:18
+
+7   vars: # Variables locales au playbook
+8     backup_dir: "/backup" # Répertoire racine des backups
+9     backup_date: "{{ ansible_date_time.date }}" # Date du jour pour nommer le backup
+                   ^ column 18
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-26 19:40:36,698 p=46258 u=jimmy n=ansible INFO| changed: [web02]
+2026-01-26 19:40:36,816 p=46258 u=jimmy n=ansible INFO| changed: [web01]
+2026-01-26 19:40:36,825 p=46258 u=jimmy n=ansible INFO| changed: [db01]
+2026-01-26 19:40:36,859 p=46258 u=jimmy n=ansible INFO| changed: [monitor01]
+2026-01-26 19:40:36,939 p=46258 u=jimmy n=ansible INFO| changed: [app01]
+2026-01-26 19:40:37,002 p=46258 u=jimmy n=ansible INFO| changed: [app02]
+2026-01-26 19:40:37,009 p=46258 u=jimmy n=ansible INFO| TASK [Backup configuration Nginx] ************************************************************************************
+2026-01-26 19:40:37,122 p=46258 u=jimmy n=ansible INFO| skipping: [app01]
+2026-01-26 19:40:37,135 p=46258 u=jimmy n=ansible INFO| skipping: [app02]
+2026-01-26 19:40:37,138 p=46258 u=jimmy n=ansible INFO| skipping: [db01]
+2026-01-26 19:40:37,148 p=46258 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-26 19:40:38,261 p=46258 u=jimmy n=ansible INFO| changed: [web02]
+2026-01-26 19:40:38,270 p=46258 u=jimmy n=ansible INFO| changed: [web01]
+2026-01-26 19:40:38,274 p=46258 u=jimmy n=ansible INFO| TASK [Backup logs application] ***************************************************************************************
+2026-01-26 19:40:38,301 p=46258 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-26 19:40:38,311 p=46258 u=jimmy n=ansible INFO| skipping: [web02]
+2026-01-26 19:40:38,349 p=46258 u=jimmy n=ansible INFO| skipping: [db01]
+2026-01-26 19:40:38,382 p=46258 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-26 19:40:39,227 p=46258 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:40:39,236 p=46258 u=jimmy n=ansible INFO| ok: [app02]
+2026-01-26 19:40:39,240 p=46258 u=jimmy n=ansible INFO| TASK [Nettoyer les anciens backups] **********************************************************************************
+2026-01-26 19:40:41,440 p=46258 u=jimmy n=ansible INFO| ok: [db01]
+2026-01-26 19:40:41,472 p=46258 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-26 19:40:41,473 p=46258 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:40:41,554 p=46258 u=jimmy n=ansible INFO| ok: [web02]
+2026-01-26 19:40:41,628 p=46258 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-26 19:40:41,654 p=46258 u=jimmy n=ansible INFO| ok: [app02]
+2026-01-26 19:40:41,660 p=46258 u=jimmy n=ansible INFO| TASK [Supprimer les backups expirés] *********************************************************************************
+2026-01-26 19:40:41,682 p=46258 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-26 19:40:41,690 p=46258 u=jimmy n=ansible INFO| skipping: [web02]
+2026-01-26 19:40:41,700 p=46258 u=jimmy n=ansible INFO| skipping: [app01]
+2026-01-26 19:40:41,708 p=46258 u=jimmy n=ansible INFO| skipping: [app02]
+2026-01-26 19:40:41,710 p=46258 u=jimmy n=ansible INFO| skipping: [db01]
+2026-01-26 19:40:41,717 p=46258 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-26 19:40:41,724 p=46258 u=jimmy n=ansible INFO| TASK [Résumé des backups] ********************************************************************************************
+2026-01-26 19:40:41,817 p=46258 u=jimmy n=ansible INFO| ok: [web01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-26"
+}
+2026-01-26 19:40:41,818 p=46258 u=jimmy n=ansible INFO| ok: [web02] => {
+    "msg": "✅ Backup créé: /backup/2026-01-26"
+}
+2026-01-26 19:40:41,819 p=46258 u=jimmy n=ansible INFO| ok: [app01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-26"
+}
+2026-01-26 19:40:41,822 p=46258 u=jimmy n=ansible INFO| ok: [app02] => {
+    "msg": "✅ Backup créé: /backup/2026-01-26"
+}
+2026-01-26 19:40:41,829 p=46258 u=jimmy n=ansible INFO| ok: [db01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-26"
+}
+2026-01-26 19:40:41,837 p=46258 u=jimmy n=ansible INFO| ok: [monitor01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-26"
+}
+2026-01-26 19:40:41,838 p=46258 u=jimmy n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2026-01-26 19:40:41,839 p=46258 u=jimmy n=ansible INFO| app01                      : ok=5    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2026-01-26 19:40:41,839 p=46258 u=jimmy n=ansible INFO| app02                      : ok=5    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2026-01-26 19:40:41,839 p=46258 u=jimmy n=ansible INFO| db01                       : ok=4    changed=1    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+2026-01-26 19:40:41,839 p=46258 u=jimmy n=ansible INFO| monitor01                  : ok=4    changed=1    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+2026-01-26 19:40:41,839 p=46258 u=jimmy n=ansible INFO| web01                      : ok=5    changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2026-01-26 19:40:41,839 p=46258 u=jimmy n=ansible INFO| web02                      : ok=5    changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2026-01-26 19:43:18,398 p=48482 u=jimmy n=ansible INFO| PLAY [Backup des serveurs] *******************************************************************************************
+2026-01-26 19:43:18,405 p=48482 u=jimmy n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2026-01-26 19:43:19,920 p=48482 u=jimmy n=ansible WARNING| [WARNING]: Host 'monitor01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:43:19,920 p=48482 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-26 19:43:19,922 p=48482 u=jimmy n=ansible WARNING| [WARNING]: Host 'app01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:43:19,922 p=48482 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:43:19,972 p=48482 u=jimmy n=ansible WARNING| [WARNING]: Host 'web01' is using the discovered Python interpreter at '/usr/bin/python3.10', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+
+2026-01-26 19:43:19,972 p=48482 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-26 19:43:19,974 p=48482 u=jimmy n=ansible INFO| TASK [Créer le répertoire de backup] *********************************************************************************
+2026-01-26 19:43:20,543 p=48482 u=jimmy n=ansible WARNING| [WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+
+2026-01-26 19:43:20,543 p=48482 u=jimmy n=ansible INFO| [DEPRECATION WARNING]: INJECT_FACTS_AS_VARS default to `True` is deprecated, top-level facts will not be auto injected after the change. This feature will be removed from ansible-core version 2.24.
+Origin: /Users/jimmy/git/slides/new_slidedev/ansible/exemples/04-projet-production/playbooks/backup.yml:9:18
+
+7   vars: # Variables locales au playbook
+8     backup_dir: "/backup" # Répertoire racine des backups
+9     backup_date: "{{ ansible_date_time.date }}" # Date du jour pour nommer le backup
+                   ^ column 18
+
+Use `ansible_facts["fact_name"]` (no `ansible_` prefix) instead.
+
+
+2026-01-26 19:43:20,543 p=48482 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:43:20,548 p=48482 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-26 19:43:20,556 p=48482 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-26 19:43:20,559 p=48482 u=jimmy n=ansible INFO| TASK [Backup configuration Nginx] ************************************************************************************
+2026-01-26 19:43:20,577 p=48482 u=jimmy n=ansible INFO| skipping: [app01]
+2026-01-26 19:43:20,583 p=48482 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-26 19:43:21,073 p=48482 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-26 19:43:21,076 p=48482 u=jimmy n=ansible INFO| TASK [Backup logs application] ***************************************************************************************
+2026-01-26 19:43:21,094 p=48482 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-26 19:43:21,102 p=48482 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-26 19:43:21,530 p=48482 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:43:21,532 p=48482 u=jimmy n=ansible INFO| TASK [Nettoyer les anciens backups] **********************************************************************************
+2026-01-26 19:43:22,232 p=48482 u=jimmy n=ansible INFO| ok: [monitor01]
+2026-01-26 19:43:22,237 p=48482 u=jimmy n=ansible INFO| ok: [web01]
+2026-01-26 19:43:22,242 p=48482 u=jimmy n=ansible INFO| ok: [app01]
+2026-01-26 19:43:22,245 p=48482 u=jimmy n=ansible INFO| TASK [Supprimer les backups expirés] *********************************************************************************
+2026-01-26 19:43:22,260 p=48482 u=jimmy n=ansible INFO| skipping: [web01]
+2026-01-26 19:43:22,262 p=48482 u=jimmy n=ansible INFO| skipping: [app01]
+2026-01-26 19:43:22,267 p=48482 u=jimmy n=ansible INFO| skipping: [monitor01]
+2026-01-26 19:43:22,270 p=48482 u=jimmy n=ansible INFO| TASK [Résumé des backups] ********************************************************************************************
+2026-01-26 19:43:22,313 p=48482 u=jimmy n=ansible INFO| ok: [web01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-26"
+}
+2026-01-26 19:43:22,320 p=48482 u=jimmy n=ansible INFO| ok: [app01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-26"
+}
+2026-01-26 19:43:22,325 p=48482 u=jimmy n=ansible INFO| ok: [monitor01] => {
+    "msg": "✅ Backup créé: /backup/2026-01-26"
+}
+2026-01-26 19:43:22,325 p=48482 u=jimmy n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2026-01-26 19:43:22,325 p=48482 u=jimmy n=ansible INFO| app01                      : ok=5    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2026-01-26 19:43:22,325 p=48482 u=jimmy n=ansible INFO| monitor01                  : ok=4    changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
+2026-01-26 19:43:22,326 p=48482 u=jimmy n=ansible INFO| web01                      : ok=5    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   

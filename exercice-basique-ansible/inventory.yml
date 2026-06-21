@@ -1,0 +1,41 @@
+# inventory.yml
+---
+all:
+  vars:
+    ansible_connection: docker
+    ansible_user: root
+    ansible_python_interpreter: /usr/bin/python3
+
+  children:
+    webservers:
+      hosts:
+        web01:
+          ansible_host: ansible-lab-web01
+        web02:
+          ansible_host: ansible-lab-web02
+        web03:
+          ansible_host: ansible-lab-web03
+
+    databases:
+      hosts:
+        db01:
+          ansible_host: ansible-lab-db01
+        db02:
+          ansible_host: ansible-lab-db02
+
+    appservers:
+      hosts:
+        app01:
+          ansible_host: ansible-lab-app01
+        app02:
+          ansible_host: ansible-lab-app02
+        app03:
+          ansible_host: ansible-lab-app03
+
+    monitoring:
+      hosts:
+        monitor01:
+          ansible_host: ansible-lab-monitor01
+        monitor02:
+          ansible_host: ansible-lab-monitor02
+

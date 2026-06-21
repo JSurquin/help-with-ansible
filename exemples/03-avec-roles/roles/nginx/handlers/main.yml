@@ -1,0 +1,22 @@
+--- # Start of YAML document
+# Handlers for the nginx role
+# NOTE: In Docker without systemd, we use direct commands
+# In production with systemd, use the 'service' module instead
+
+- name: Reload Nginx # Handler name (called via notify)
+  # Reload config hot with nginx -s reload
+  shell: nginx -t && nginx -s reload || true
+  args:
+    executable: /bin/bash
+
+- name: Restart Nginx # Handler name for full restart
+  # Fully restart nginx
+  shell: pkill nginx || true && /usr/sbin/nginx
+  args:
+    executable: /bin/bash
+
+- name: Verify Nginx configuration # Validation handler name
+  command: nginx -t # Nginx configuration test command
+  register: nginx_test # Save the result in a variable
+  changed_when: false # Do not mark as "changed" because this is only a test
+  failed_when: nginx_test.rc != 0 # Fail if the return code is not 0

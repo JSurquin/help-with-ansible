@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Gilroy ExtraBold";
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src:
+    local("Gilroy ExtraBold"),
+    url("/fonts/Gilroy-ExtraBold.otf") format("opentype"),
+    url("/fonts/Gilroy-ExtraBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Penguin";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src:
+    local("Penguin"),
+    url("/fonts/Penguin.ttf") format("truetype");
+}

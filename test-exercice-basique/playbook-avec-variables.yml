@@ -1,0 +1,30 @@
+---
+- name: Configuration with variables
+  hosts: databases
+  become: true
+
+  vars:
+    db_port: 5432
+    db_name: production
+    admin_email: admin@example.com
+
+  tasks:
+    - name: Create configuration file
+      copy:
+        content: |
+          # Database configuration
+          DB_PORT={{ db_port }}
+          DB_NAME={{ db_name }}
+          ADMIN_EMAIL={{ admin_email }}
+          HOSTNAME={{ inventory_hostname }}
+        dest: /etc/db-config.conf
+        mode: '0644'
+
+    - name: Display created file contents
+      command: cat /etc/db-config.conf
+      register: db_config_content
+      changed_when: false
+
+    - name: Show configuration
+      debug:
+        var: db_config_content.stdout_lines

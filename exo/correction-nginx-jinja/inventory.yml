@@ -1,0 +1,16 @@
+---
+# Inventory aligned with docker-compose-lab.yml (webservers group).
+all:
+  vars:
+    ansible_connection: docker
+    ansible_user: root
+    ansible_python_interpreter: /usr/bin/python3
+  children:
+    webservers:
+      hosts:
+        web01:
+          ansible_host: ansible-lab-web01
+        web02:
+          ansible_host: ansible-lab-web02
+        web03:
+          ansible_host: ansible-lab-web03

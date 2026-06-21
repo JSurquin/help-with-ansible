@@ -1,0 +1,44 @@
+---
+- name: Basic server configuration
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Display welcome message
+      debug:
+        msg: "👋 Hello from {{ inventory_hostname }}"
+
+    - name: Update APT cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install basic tools
+      apt:
+        name:
+          - curl
+          - vim
+          - htop
+          - net-tools
+        state: present
+
+    - name: Create info file
+      copy:
+        content: |
+          Server name: {{ inventory_hostname }}
+          Date: {{ ansible_date_time.iso8601 }}
+        dest: /tmp/ansible-info.txt
+        mode: '0644'
+
+    - name: Display created file contents
+      command: cat /tmp/ansible-info.txt
+      register: file_content
+      changed_when: false
+
+    - name: Display system information
+      debug:
+        msg: |
+          Distribution: {{ ansible_distribution }}
+          Version: {{ ansible_distribution_version }}
+          Architecture: {{ ansible_architecture }}
+          Memory (MB): {{ ansible_memtotal_mb }}

@@ -1,0 +1,11 @@
+---
+# Handlers for the app role
+
+- name: Restart application
+  # NOTE: For Docker without systemd
+  # In production with systemd, use: service: name=myapp state=restarted
+  shell: |
+    pkill -f "python3 {{ app_dir }}/app.py" || true
+    sleep 1
+    nohup python3 {{ app_dir }}/app.py > {{ app_dir }}/app.log 2>&1 &
+  become_user: "{{ app_user }}"

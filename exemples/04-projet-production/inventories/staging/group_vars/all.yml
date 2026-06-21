@@ -1,0 +1,35 @@
+--- # Start of YAML document
+# Global variables for all environments
+
+# Application
+app_name: "MyApp" # Application name
+app_port: 8080 # Application listen port
+app_user: "appuser" # System user for the application
+
+# Nginx
+nginx_worker_processes: "auto" # Number of Nginx workers (auto = CPU count)
+nginx_worker_connections: 1024 # Concurrent connections per worker
+
+# Monitoring
+monitoring_enabled: true # Enable monitoring
+monitoring_port: 9090 # Monitoring listen port (e.g. Prometheus)
+
+# Backup
+backup_enabled: true # Enable automatic backups
+backup_retention_days: 7 # Number of days to retain backups
+
+# Logs
+log_level: "info" # Log level (debug/info/warning/error)
+app_log_path: "/var/log/app" # Application log directory
+
+# Timezone
+timezone: "Europe/Paris" # System timezone
+
+# Common packages
+common_packages: # Packages to install on all servers
+  - curl # HTTP request tool
+  - wget # File downloader
+  - vim # Text editor
+  - git # Version control system
+  - htop # Interactive process monitor
+  - net-tools # Network tools (ifconfig, netstat, etc.)

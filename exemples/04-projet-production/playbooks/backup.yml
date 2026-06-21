@@ -1,0 +1,48 @@
+--- # Start of YAML document
+# Backup playbook
+
+- name: Server backups # Backup play name
+  hosts: all # Apply to all servers
+  
+  vars: # Playbook-local variables
+    backup_dir: "/backup" # Root backup directory
+    backup_date: "{{ ansible_date_time.date }}" # Today's date for naming the backup
+    backup_retention_days: 7 # Number of days to retain backups
+    app_log_path: "/var/log/app" # Application log path
+  
+  tasks: # Tasks to execute
+    - name: Create the backup directory # Create the dated directory
+      file: # File/directory management module
+        path: "{{ backup_dir }}/{{ backup_date }}" # Path with dated subdirectory
+        state: directory # Type: directory
+        mode: '0750' # Permissions: rwxr-x--- (secure)
+    
+    - name: Backup Nginx configuration # Nginx config backup
+      archive: # Module to create archives
+        path: /etc/nginx # Directory to archive
+        dest: "{{ backup_dir }}/{{ backup_date }}/nginx-{{ inventory_hostname }}.tar.gz" # Destination archive
+      when: inventory_hostname in groups['webservers'] # Condition: webservers only
+    
+    - name: Backup application logs # Application log backup
+      archive: # Module to create archives
+        path: "{{ app_log_path }}" # Log directory to archive
+        dest: "{{ backup_dir }}/{{ backup_date }}/logs-{{ inventory_hostname }}.tar.gz" # Destination archive
+      when: inventory_hostname in groups['appservers'] # Condition: appservers only
+    
+    - name: Find old backups # Search for expired backups
+      find: # Module to search files/directories
+        paths: "{{ backup_dir }}" # Search directory
+        age: "{{ backup_retention_days }}d" # Criterion: older than X days
+        file_type: directory # Search type: directories only
+      register: old_backups # Save results in a variable
+    
+    - name: Remove expired backups # Delete old backups
+      file: # File management module
+        path: "{{ item.path }}" # Directory path to delete (from loop)
+        state: absent # Action: delete
+      loop: "{{ old_backups.files }}" # Loop over find results
+      when: old_backups.files | length > 0 # Condition: if expired backups exist
+    
+    - name: Backup summary # Display summary
+      debug: # Module to display a message
+        msg: "✅ Backup created: {{ backup_dir }}/{{ backup_date }}" # Message with backup path

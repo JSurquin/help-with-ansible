@@ -1,0 +1,32 @@
+--- # Start of YAML document
+# Playbook using roles
+- name: Deploy with roles # Descriptive playbook name
+  hosts: webservers # Run on all servers in the webservers group
+  become: true # Use sudo privileges for execution
+  
+  vars: # Playbook-local variables
+    # Variables specific to this deployment
+    nginx_vhosts: # List of virtual hosts to configure
+      - server_name: "{{ inventory_hostname }}" # Server name (dynamic from inventory)
+        root: "/var/www/html" # Web root directory
+        port: 80 # Standard HTTP listen port
+  
+  roles: # Roles to apply
+    # Use the nginx role
+    - role: nginx # Role name to execute
+      tags: ['nginx', 'webserver'] # Tags for selective execution
+
+  post_tasks: # Tasks executed after all roles
+    # Tasks executed after all roles
+    - name: Verify that Nginx responds # Verification task description
+      uri: # Module to test HTTP endpoints
+        url: "http://localhost" # URL to test
+        status_code: 200 # Expected HTTP status code
+      register: nginx_check # Save the result in a variable
+      retries: 3 # Number of retries on failure
+      delay: 2 # Delay in seconds between retries
+    
+    - name: Display the result # Display task description
+      debug: # Module to display debug messages
+        msg: "✅ Nginx is working correctly on {{ inventory_hostname }}" # Success message with server name
+      when: nginx_check is success # Condition: only display if the test succeeded

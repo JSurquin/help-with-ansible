@@ -1,0 +1,37 @@
+--- # Start of YAML document
+# Application-only deployment playbook
+
+- name: Application deployment # Deployment play name
+  hosts: appservers # Target only application servers
+  
+  pre_tasks: # Tasks executed BEFORE roles
+    - name: Verify the version to deploy # Version validation
+      assert: # Module to verify conditions
+        that: # List of conditions to verify
+          - app_version is defined # app_version variable must exist
+          - app_version != "" # app_version variable must not be empty
+        fail_msg: "The application version must be defined" # Message on failure
+    
+    - name: Display deployment information # Information display
+      debug: # Module to display messages
+        msg: | # Multiline message
+          🚀 Deploying {{ app_name }}
+          🏷️ Version: {{ app_version }}
+          🌍 Environment: {{ app_environment }}
+          📍 Servers: {{ ansible_play_hosts | join(', ') }}
+  
+  roles: # Roles to apply
+    - role: app # Application deployment role
+  
+  post_tasks: # Tasks executed AFTER roles
+    - name: Verify that the application responds # Application health check
+      uri: # Module to test HTTP endpoints
+        url: "http://localhost:{{ app_port }}/health" # Health check URL
+        status_code: 200 # Expected HTTP code: 200 OK
+      register: health_check # Save the result in a variable
+      retries: 5 # Number of retries on failure
+      delay: 3 # Delay in seconds between retries
+    
+    - name: Confirm deployment # Final confirmation
+      debug: # Module to display a message
+        msg: "✅ Application deployed and running on {{ inventory_hostname }}" # Success message

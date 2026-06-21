@@ -1,0 +1,10 @@
+all:
+  vars:
+    ansible_connection: docker
+  children:
+    bdd_servers:
+      hosts:
+        bdd1:
+          ansible_host: nginx-server-1
+        bdd2:
+          ansible_host: nginx-server-2

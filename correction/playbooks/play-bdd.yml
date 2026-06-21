@@ -1,0 +1,5 @@
+- name: Configure database servers
+  hosts: bdd_servers
+  become: yes
+  roles:
+    - bdd

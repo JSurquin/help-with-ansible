@@ -1,0 +1,32 @@
+# Files and folders to ignore in the solution folder
+
+# Ansible logs
+*.retry
+*.log
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Temporary files
+.tmp/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db

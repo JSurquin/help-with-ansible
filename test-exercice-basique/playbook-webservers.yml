@@ -1,0 +1,27 @@
+---
+- name: Configure web servers
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Create web directory
+      file:
+        path: /var/www/html
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Create simple web page
+      copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head><title>{{ inventory_hostname }}</title></head>
+          <body>
+            <h1>Web Server: {{ inventory_hostname }}</h1>
+            <p>Configured with Ansible</p>
+          </body>
+          </html>
+        dest: /var/www/html/index.html
+        mode: '0644'

@@ -1,0 +1,50 @@
+═══════════════════════════════════════════════════════════════
+    MINI-QUIZ: Module 7 - Variables
+═══════════════════════════════════════════════════════════════
+
+Question 1: How do you define a variable in a playbook?
+
+A) `set: var_name value`
+B) `vars:` then `var_name: value`
+C) `define var_name = value`
+
+───────────────────────────────────────────────────────────────
+
+Question 2: How do you use a variable in a task?
+
+A) `$var_name`
+B) `{{ var_name }}`
+C) `%var_name%`
+
+───────────────────────────────────────────────────────────────
+
+Question 3: What is the variable precedence order?
+
+A) Playbook > Inventory > extra-vars (-e)
+B) extra-vars (-e) > Playbook > Inventory
+C) Inventory > extra-vars (-e) > Playbook
+
+═══════════════════════════════════════════════════════════════
+                        ANSWERS
+═══════════════════════════════════════════════════════════════
+
+Question 1: B ✓
+Explanation: Define variables with the `vars:` section followed
+by a YAML key-value list:
+  vars:
+    var_name: value
+
+Question 2: B ✓
+Explanation: Use Jinja2 syntax with double braces:
+`{{ var_name }}`. This works everywhere: in tasks, templates,
+conditions, etc.
+
+Question 3: B ✓
+Explanation: Precedence order (strongest to weakest):
+1. extra-vars (-e) - command line, highest priority
+2. playbook vars
+3. group_vars/all
+4. role defaults
+extra-vars always win, allowing overrides in production.
+
+═══════════════════════════════════════════════════════════════

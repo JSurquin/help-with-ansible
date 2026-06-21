@@ -1,0 +1,88 @@
+--- # Start of YAML document
+# Main tasks for the nginx role
+
+- name: Update APT cache # Task description
+  apt: # Debian/Ubuntu package management module
+    update_cache: yes # Refresh the list of available packages
+    cache_valid_time: 3600 # Cache validity duration in seconds (1h)
+  tags: ['packages'] # Tag for selective execution
+
+- name: Install Nginx # Installation task description
+  apt: # Package management module
+    name: nginx # Package name to install
+    state: present # Ensure the package is installed
+  tags: ['packages'] # Tag for selective execution
+
+- name: Create required directories # Directory creation task description
+  file: # File and directory management module
+    path: "{{ item }}" # Directory path (loop variable)
+    state: directory # Type: directory
+    owner: "{{ nginx_user }}" # Directory owner
+    group: "{{ nginx_user }}" # Directory group
+    mode: '0755' # Permissions: rwxr-xr-x
+  loop: # Loop over list items
+    - "{{ nginx_vhost_path }}" # Available site configurations directory
+    - "{{ nginx_vhost_enabled_path }}" # Enabled site configurations directory
+  tags: ['config'] # Tag for selective execution
+
+- name: Configure Nginx (nginx.conf) # Main configuration task description
+  template: # Module to generate files from templates
+    src: nginx.conf.j2 # Source template file (Jinja2)
+    dest: "{{ nginx_conf_path }}" # Generated file destination
+    owner: root # File owner
+    group: root # File group
+    mode: '0644' # Permissions: rw-r--r--
+    validate: 'nginx -t -c %s' # Validation command before applying
+  notify: Reload Nginx # Trigger the reload handler
+  tags: ['config'] # Tag for selective execution
+
+- name: Remove the default vhost # Removal task description
+  file: # File management module
+    path: "{{ nginx_vhost_enabled_path }}/default" # Default vhost path
+    state: absent # Remove the file
+  when: nginx_remove_default_vhost # Condition: if the variable is true
+  notify: Reload Nginx # Trigger the reload handler
+  tags: ['config'] # Tag for selective execution
+
+- name: Configure virtual hosts # Vhost configuration task description
+  template: # Module to generate files from templates
+    src: vhost.conf.j2 # Source template file
+    dest: "{{ nginx_vhost_path }}/{{ item.server_name }}.conf" # Destination with dynamic name
+    owner: root # File owner
+    group: root # File group
+    mode: '0644' # Permissions: rw-r--r--
+  loop: "{{ nginx_vhosts }}" # Loop over the vhost list
+  when: nginx_vhosts | length > 0 # Condition: if the list is not empty
+  notify: Reload Nginx # Trigger the reload handler
+  tags: ['config', 'vhosts'] # Tags for selective execution
+
+- name: Enable virtual hosts # Enable task description
+  file: # File management module
+    src: "{{ nginx_vhost_path }}/{{ item.server_name }}.conf" # Symlink source
+    dest: "{{ nginx_vhost_enabled_path }}/{{ item.server_name }}.conf" # Symlink destination
+    state: link # Type: symbolic link
+  loop: "{{ nginx_vhosts }}" # Loop over the vhost list
+  when: nginx_vhosts | length > 0 # Condition: if the list is not empty
+  notify: Reload Nginx # Trigger the reload handler
+  tags: ['config', 'vhosts'] # Tags for selective execution
+
+- name: Create web directories # Web directory creation task description
+  file: # File management module
+    path: "{{ item.root }}" # Site root directory path
+    state: directory # Type: directory
+    owner: "{{ nginx_user }}" # Directory owner
+    group: "{{ nginx_user }}" # Directory group
+    mode: '0755' # Permissions: rwxr-xr-x
+  loop: "{{ nginx_vhosts }}" # Loop over the vhost list
+  when: nginx_vhosts | length > 0 # Condition: if the list is not empty
+  tags: ['config'] # Tag for selective execution
+
+- name: Verify and start Nginx # Startup task description
+  # NOTE: In Docker without systemd, we use direct commands
+  # In production with systemd, use: service: name=nginx state=started enabled=yes
+  shell: |
+    nginx -t && (pkill nginx || true) && /usr/sbin/nginx
+  args:
+    executable: /bin/bash
+  when: nginx_service_state == "started"
+  tags: ['service'] # Tag for selective execution

@@ -1,0 +1,23 @@
+- name: Configure Docker servers 🐳
+  hosts: docker_hosts
+  become: true
+  vars:
+    docker_compose_version: '2.24.0'
+
+  tasks:
+    - name: Install Docker
+      apt:
+        name: [docker.io, docker-compose-plugin]
+        state: present
+        update_cache: true
+- name: Add user to docker group
+  user:
+    name: '{{ ansible_user }}'
+    groups: docker
+    append: true
+
+- name: Start and enable Docker
+  systemd:
+    name: docker
+    state: started
+    enabled: true

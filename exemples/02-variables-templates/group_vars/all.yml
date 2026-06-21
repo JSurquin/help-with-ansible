@@ -1,0 +1,23 @@
+--- # Start of YAML document
+# Global variables for all servers
+app_name: "My Ansible Application" # Application name shown in the UI
+app_version: "1.0.0" # Current application version
+app_environment: "development" # Runtime environment (development/staging/production)
+
+# Nginx configuration
+nginx_config: # Object containing all Nginx settings
+  port: 80 # Web server listen port
+  worker_connections: 1024 # Maximum concurrent connections per worker
+  client_max_body_size: "10m" # Maximum upload file size
+
+# Company information
+company: # Object containing company details
+  name: "Andromed" # Company name
+  url: "https://www.andromed.fr" # Company website
+  support_email: "support@andromed.fr" # Support email address
+
+# Background colors per environment
+env_colors: # Background color map per environment
+  development: "#e3f2fd" # Light blue for development
+  staging: "#fff3e0" # Light orange for staging
+  production: "#e8f5e8" # Light green for production

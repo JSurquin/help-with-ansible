@@ -1,0 +1,44 @@
+---
+- name: Update APT cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install Nginx
+  apt:
+    name: "{{ nginx_package }}"
+    state: present
+
+- name: Create web site directory
+  file:
+    path: "{{ nginx_document_root }}"
+    state: directory
+    mode: '0755'
+
+- name: Deploy Nginx configuration
+  template:
+    src: nginx.conf.j2
+    dest: "{{ nginx_config_path }}"
+    mode: '0644'
+  notify: restart nginx
+
+- name: Enable deployed vhost (sites-enabled)
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/default
+    src: "{{ nginx_config_path }}"
+    state: link
+    force: true
+  notify: restart nginx
+
+- name: Deploy home page
+  template:
+    src: index.html.j2
+    dest: "{{ nginx_document_root }}/index.html"
+    mode: '0644'
+  notify: restart nginx
+
+- name: Ensure Nginx is started and enabled
+  service:
+    name: "{{ nginx_service }}"
+    state: started
+    enabled: yes

@@ -1,0 +1,48 @@
+═══════════════════════════════════════════════════════════════
+    MINI-QUIZ: Module 6 - Essential modules
+═══════════════════════════════════════════════════════════════
+
+Question 1: What is an Ansible module?
+
+A) A configuration file
+B) A ready-to-use function for a specific task
+C) A type of playbook
+
+───────────────────────────────────────────────────────────────
+
+Question 2: Which module is used to manage Docker containers?
+
+A) `docker_container`
+B) `community.docker.docker_container`
+C) Both can work
+
+───────────────────────────────────────────────────────────────
+
+Question 3: Why use the `template` module instead of `copy`?
+
+A) `template` is faster
+B) `template` allows Jinja2 variables
+C) No difference
+
+═══════════════════════════════════════════════════════════════
+                        ANSWERS
+═══════════════════════════════════════════════════════════════
+
+Question 1: B ✓
+Explanation: A module is a reusable built-in function that runs
+one precise task (install a package, copy a file, start a
+service...). Ansible has hundreds of modules for common tasks.
+
+Question 2: B ✓
+Explanation: Since Ansible 2.10+, use the full name with
+namespace: `community.docker.docker_container`. You must also
+install the collection first with
+`ansible-galaxy collection install community.docker`.
+
+Question 3: B ✓
+Explanation: The `template` module processes the file with
+Jinja2, allowing variables (`{{ my_var }}`), conditions
+(`{% if %}`), and loops (`{% for %}`). The `copy` module copies
+the file as-is without processing.
+
+═══════════════════════════════════════════════════════════════

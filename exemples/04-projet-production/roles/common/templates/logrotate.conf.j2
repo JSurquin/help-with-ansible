@@ -1,0 +1,10 @@
+# Logrotate configuration for the application
+{{ log_path }}/*.log { {# Log file pattern to manage #}
+    daily {# Rotate logs daily #}
+    rotate {{ backup_retention_days }} {# Number of rotated files to keep #}
+    compress {# Compress rotated logs with gzip #}
+    delaycompress {# Delay compression by one rotation (for in-progress processing) #}
+    notifempty {# Skip rotation if the file is empty #}
+    missingok {# Do not error if the log file is missing #}
+    create 0644 root root {# Create a new log file with permissions and owner #}
+} {# End of logrotate configuration block #}

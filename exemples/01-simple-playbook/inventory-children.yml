@@ -1,0 +1,24 @@
+# inventory/hosts.yml - Main inventory file
+all:  # Root group containing ALL servers
+  vars:  # Global variables applied to every server
+    ansible_user: ubuntu  # Default SSH user
+    ansible_python_interpreter: /usr/bin/python3  # Python path on target hosts
+
+  children:  # Subgroups organized by function
+    docker_hosts:  # Servers that run Docker
+      hosts:  # Servers in this group
+        docker-01: {ansible_host: 10.0.1.10}  # Logical name : real IP address
+        docker-02: {ansible_host: 10.0.1.11}  # Second Docker server
+
+    databases:  # Database servers
+      hosts:  # DB servers
+        db-01: {ansible_host: 10.0.1.20}  # Primary database server
+
+    webservers:  # Web servers (empty declaration here)
+databases:  # databases group redefined (can be confusing)
+  hosts:  # DB servers
+    db-01: {ansible_host: 10.0.1.20}  # Same server as above
+
+webservers:  # webservers group definition
+  hosts:  # Web servers with range notation
+    web-[01:03]: {ansible_host: '10.0.1.{{ 30 + item }}'}  # Generates web-01, web-02, web-03 with IPs 10.0.1.31, 10.0.1.32, 10.0.1.33

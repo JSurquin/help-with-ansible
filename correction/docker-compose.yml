@@ -1,0 +1,52 @@
+services:
+  apache-server-1:
+    image: ubuntu:22.04
+    hostname: apache1
+    container_name: apache-server-1
+    command: >
+      bash -c "apt-get update &&
+               apt-get install -y python3 sudo &&
+               sleep infinity"
+    networks:
+      - ansible-network
+
+  apache-server-2:
+    image: ubuntu:22.04
+    hostname: apache2
+    container_name: apache-server-2
+    command: >
+      bash -c "apt-get update &&
+               apt-get install -y python3 sudo &&
+               sleep infinity"
+    networks:
+      - ansible-network
+
+  nginx-server-1:
+    image: ubuntu:22.04
+    hostname: nginx1
+    container_name: nginx-server-1
+    command: >
+      bash -c "apt-get update &&
+               apt-get install -y python3 sudo &&
+               sleep infinity"
+    networks:
+      - ansible-network
+    ports:
+      - "9080:8080"
+
+  nginx-server-2:
+    image: ubuntu:22.04
+    hostname: nginx2
+    container_name: nginx-server-2
+    command: >
+      bash -c "apt-get update &&
+               apt-get install -y python3 sudo &&
+               sleep infinity"
+    networks:
+      - ansible-network
+    ports:
+      - "9081:8080"
+
+networks:
+  ansible-network:
+    driver: bridge

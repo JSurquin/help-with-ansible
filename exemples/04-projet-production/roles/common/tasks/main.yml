@@ -1,0 +1,47 @@
+--- # Start of YAML document
+# common role: base configuration for all servers
+
+- name: Update APT cache # Update the package list
+  apt: # Debian/Ubuntu package management module
+    update_cache: yes # Refresh the available package cache
+    cache_valid_time: 3600 # Cache validity duration in seconds (1h)
+
+- name: Install common packages # Install base tools
+  apt: # Package management module
+    name: "{{ common_packages }}" # Package list from variable
+    state: present # Ensure all packages are installed
+
+- name: Configure timezone # Configure system timezone
+  timezone: # System timezone management module
+    name: "{{ timezone }}" # Timezone from variable
+  when: ansible_service_mgr == "systemd" # Condition: only if systemd is used
+
+- name: Create log directories # Create log directories
+  file: # File/directory management module
+    path: "{{ log_path }}" # Directory path from variable
+    state: directory # Type: directory
+    mode: '0755' # Permissions: rwxr-xr-x (public read)
+
+- name: Configure log rotation # Configure logrotate
+  template: # Module to generate files from templates
+    src: logrotate.conf.j2 # Source template for logrotate configuration
+    dest: /etc/logrotate.d/app # Destination in logrotate.d directory
+    mode: '0644' # Permissions: rw-r--r-- (public read)
+
+- name: Disable unnecessary services # Disable unneeded services
+  service: # systemd service management module
+    name: "{{ item }}" # Service name (loop variable)
+    state: stopped # State: stopped
+    enabled: no # Do not start at boot
+  loop: # Loop over the service list
+    - snapd # snapd service (Ubuntu snap manager)
+  ignore_errors: yes # Continue even if the service does not exist
+
+- name: Display system information # Display server information
+  debug: # Module to display messages
+    msg: | # Multiline message with Ansible variables
+      📊 Server: {{ inventory_hostname }}
+      💻 OS: {{ ansible_distribution }} {{ ansible_distribution_version }}
+      🔧 CPU: {{ ansible_processor_vcpus }} vCPUs
+      💾 RAM: {{ ansible_memtotal_mb }}MB
+      🌐 IP: {{ ansible_default_ipv4.address | default('N/A') }}

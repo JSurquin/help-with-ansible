@@ -1,0 +1,49 @@
+═══════════════════════════════════════════════════════════════
+    MINI-QUIZ: Module 10 - Roles
+═══════════════════════════════════════════════════════════════
+
+Question 1: How does Ansible determine a role name?
+
+A) By the folder name
+B) By the content of meta/main.yml
+C) By the name in tasks/main.yml
+
+───────────────────────────────────────────────────────────────
+
+Question 2: What is the minimum structure of a role?
+
+A) Just the tasks/ folder
+B) tasks/, handlers/, vars/, files/
+C) All folders are required
+
+───────────────────────────────────────────────────────────────
+
+Question 3: How do you use a role in a playbook?
+
+A) `roles: - role_name`
+B) `include_role: role_name`
+C) Both are possible
+
+═══════════════════════════════════════════════════════════════
+                        ANSWERS
+═══════════════════════════════════════════════════════════════
+
+Question 1: A ✓
+Explanation: The role name is determined only by the folder
+name. If your folder is called `nginx`, the role is `nginx`,
+period. The content of meta/main.yml, galaxy_info.name, or any
+other file has NO impact on the role name.
+Simple rule: 1 folder = 1 role = 1 name.
+
+Question 2: A ✓
+Explanation: Only the `tasks/` folder (with a main.yml file) is
+strictly required. All other folders (handlers/, vars/, defaults/,
+files/, templates/, meta/) are optional. Add them only when needed.
+
+Question 3: C ✓
+Explanation: Two valid syntaxes:
+- `roles:`: static declaration at play level
+- `include_role:`: dynamic inclusion in tasks
+Both have advantages depending on the use case.
+
+═══════════════════════════════════════════════════════════════

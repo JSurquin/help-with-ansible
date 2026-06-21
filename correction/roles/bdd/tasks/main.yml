@@ -1,0 +1,24 @@
+  - name: Update apt cache
+    apt:
+      update_cache: true
+
+  - name: Install apt-utils (required for MySQL)
+    apt:
+      name: apt-utils
+      state: present
+
+  - name: Install MySQL
+    apt:
+      name: mysql-server
+      state: present
+
+  - name: Start MySQL
+    service:
+      name: mysql
+      state: started
+
+  - name: Copy MySQL configuration
+    template:
+      src: my.cnf.j2
+      dest: /etc/mysql/my.cnf
+      mode: "0644"

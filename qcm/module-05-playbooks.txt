@@ -1,0 +1,46 @@
+═══════════════════════════════════════════════════════════════
+    MINI-QUIZ: Module 5 - Playbooks
+═══════════════════════════════════════════════════════════════
+
+Question 1: What does `become: true` mean?
+
+A) Become a system administrator
+B) Run tasks with sudo (root privileges)
+C) Connect as root
+
+───────────────────────────────────────────────────────────────
+
+Question 2: What is the difference between `state: present` and `state: started`?
+
+A) No difference
+B) `present` installs, `started` starts a service
+C) `present` is obsolete
+
+───────────────────────────────────────────────────────────────
+
+Question 3: A playbook runs on:
+
+A) Hosts defined in `hosts:`
+B) All servers in the inventory
+C) localhost only
+
+═══════════════════════════════════════════════════════════════
+                        ANSWERS
+═══════════════════════════════════════════════════════════════
+
+Question 1: B ✓
+Explanation: `become: true` uses `sudo` to run commands with
+root privileges. Required to install packages, modify system
+files (/etc/), and manage services.
+
+Question 2: B ✓
+Explanation: `state: present` is for package modules (install a
+package). `state: started` is for service modules (start a
+service). Each module type has its own state values.
+
+Question 3: A ✓
+Explanation: The playbook runs only on hosts defined in `hosts:`
+(e.g. `hosts: webservers` targets the webservers group,
+`hosts: all` targets all servers in the inventory).
+
+═══════════════════════════════════════════════════════════════

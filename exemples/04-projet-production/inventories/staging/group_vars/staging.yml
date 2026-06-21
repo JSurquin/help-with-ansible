@@ -1,0 +1,32 @@
+--- # Start of YAML document
+# STAGING variables
+
+app_environment: "staging" # Environment name: staging (pre-production)
+
+# Application
+app_version: "latest" # App version: always latest in staging
+app_replicas: 1 # Number of application replicas (single instance in staging)
+app_debug: true # Debug mode enabled to simplify troubleshooting
+
+# Resources
+max_memory: "512m" # Memory limit: 512 MB (limited resources in staging)
+max_cpu: "0.5" # CPU limit: 0.5 core
+
+# Database
+db_host: "db-staging.internal" # Staging database host
+db_name: "myapp_staging" # Staging database name
+db_user: "staging_user" # Staging database user
+# db_password: see secrets.yml (Vault) # Password stored in Vault (secure)
+
+# URLs
+app_url: "https://staging.monapp.com" # Public staging application URL
+api_url: "https://api-staging.monapp.com" # Staging API URL
+
+# SSL
+ssl_enabled: false # SSL disabled in staging (certificate not required)
+
+# Monitoring
+monitoring_interval: 60 # Monitoring interval in seconds (1 minute)
+
+# Backup
+backup_schedule: "0 2 * * *"  # 2 AM # Cron: backup every day at 2 AM
